@@ -8,7 +8,7 @@ dotenv.config();
 
 var connection = mysql.createConnection({
   host: "localhost",
-  user: process.env.sqlusser,
+  user: process.env.sqluser,
   password: process.env.sqlpassword,
 });
 
