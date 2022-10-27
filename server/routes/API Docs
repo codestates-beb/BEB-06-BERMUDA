@@ -1,0 +1,29 @@
+GET http://localhost:4000/user/join
+
+// 회원가입 데이터 요청 파라미터
+parameters
+{
+	"nickname": "김블록",
+	"email": "kimblock@gmail.com",
+	"password": "kimblock"
+}
+
+# // 성공 응답
+# 200
+# {
+# 	"message": "유저 계정 생성",
+# 	"data": {
+# 		"nickname": "김블록",
+# 		"address": "0xd46781DaB588d6E372a24fef318D9b5E09d9011",
+# 		"token_amount": 0,
+# 		"eth_amount": 0
+# 	}
+# }
+
+# // 실패 응답
+# 400
+# {
+# 	"error": "유효하지 않은 요청 메시지입니다."
+# }
+
+# ... 등
