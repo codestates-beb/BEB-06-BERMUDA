@@ -1,0 +1,16 @@
+CREATE TABLE `user` (
+  `nickname` varchar(255),
+  `password` varchar(255),
+  `address` varchar(255),
+  `token_amount` int,
+  `eth_amount` int,
+  `created_at` timestamp
+);
+
+CREATE TABLE `nft` (
+  `user_id` int,
+  `token_id` int,
+  `tx_hash` varchar(255)
+);
+
+ALTER TABLE `nft` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);

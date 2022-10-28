@@ -1,4 +1,3 @@
-
 // import express from "express";
 // import cors from "cors";
 import mysql from 'mysql';
@@ -8,8 +7,8 @@ dotenv.config();
 
 var connection = mysql.createConnection({
   host: "localhost",
-  user: process.env.sqluser,
-  password: process.env.sqlpassword,
+  user: process.env.ID,
+  password: process.env.PW,
 });
 
  // DB CONNECT
@@ -34,20 +33,37 @@ const GetSignUpData = () => {
   // ###### DB SCHEME AGREEMENT NOT YET ###### 
   // ###### MUST DECIDE AGREEMENT IN 22/10/28 #####
 
-  // connection.query(
-  //   "CREATE TABLE if not exists information(account varchar(255),artist varchar(255), collection varchar(255), name varchar(255), tokenUri varchar(255)) ",
-  //   function (error, results, fields) {
-  //     // error will be an Error if one occurred during the query
-  //     // results will contain the results of the query
-  //     // fields will contain information about the returned results fields (if any)
-  //     if (error) throw error;
-  //     console.log(results);
-  //   }
-  // );
+  connection.query(
+    "CREATE TABLE if not exists information(nickname varchar(255), password varchar(255), address varchar(255), token_amount int, eth_amount int, created_at timestamp) ",
+    function (error, results, fields) {
+      // error will be an Error if one occurred during the query
+      // results will contain the results of the query
+      // fields will contain information about the returned results fields (if any)
+      if (error) throw error;
+      console.log(results);
+    }
+  );
   // connection.query( 
   //   `INSERT INTO information (account, artist ,collection, name, tokenUri) VALUES ("${req.body.account}", "${req.body.artist}", "${req.body.collection}", "${req.body.name}", "${req.body.tokenUri}")`,
   //   function (error, results, fields) {
-
+  //     connection.query(
+  //       "CREATE TABLE if not exists information(account varchar(255),artist varchar(255), collection varchar(255), name varchar(255), tokenUri varchar(255)) ",
+  //       function (error, results, fields) {
+  //         // error will be an Error if one occurred during the query
+  //         // results will contain the results of the query
+  //         // fields will contain information about the returned results fields (if any)
+  //         if (error) throw error;
+  //         console.log(results);
+  //       }
+  //     );
+  //     connection.query( 
+  //       `INSERT INTO information (account, artist ,collection, name, tokenUri) VALUES ("${req.body.account}", "${req.body.artist}", "${req.body.collection}", "${req.body.name}", "${req.body.tokenUri}")`,
+  //       function (error, results, fields) {
+    
+  //         if (error) throw error;
+  //         console.log(fields);
+  //       }
+  //     );
   //     if (error) throw error;
   //     console.log(fields);
   //   }
