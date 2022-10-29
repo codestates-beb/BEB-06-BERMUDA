@@ -1,11 +1,546 @@
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.App {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+
+/* header */
+
+.Header {
+  height: 75px;
+  width: 100%;
+  border-bottom: 1px solid #f1e8e8;
+  background-color: rgb(241 238 238 / 50%);
+  position: fixed;
+  top:0;
+}
+
+.Header_box {
+  width: 1150px;
+  margin: 0 auto;
+  height: 75px;
+}
+
+.logo {
+  border: 3px solid #1ed874;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 54px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #1ed874;
+  display: inline-block;
+  margin-top: 7px;
+}
+
+
+.menu_box {
+  width: 400px;
+  float: right;
+  height: 100%;
+}
+
+.menu_text {
+  padding: 27px;
+  float: right;
+  height: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  color: #383636;
+}
+
+.menu_text.on {
+  background-color: #1ed874;
   color: white;
 }
 
+.menu_text:hover {
+  background-color: #1ed874;
+  color: white;
+}
+
+/* main */
+
+.main_box{
+  width: 1150px;
+  margin: 0 auto;
+  margin-top: 130px;
+  height: 400px;
+}
+
+.webtown_slider {
+  border: 1px solid #ccc;
+  width: 704px;
+  height: 257px;
+  display: inline-block;
+}
+
+.text_box {
+  width: 120px;
+  border-right: 1px solid #ccc;
+  height: 100%;
+  padding-top: 20px;
+  float: left;
+}
+
+.today_text {
+  font-weight: 600;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.today_text.color {
+  color:#1ed874;
+}
+
+.today_text.short {
+  font-weight: 400;
+  color:rgb(177, 161, 161);
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.img_box {
+  width: 582px;
+  height: 195px;
+  float: left;
+  cursor: pointer;
+}
+
+.img_box.zero {
+  background-image: url(/src/resources/images/zero.jpg);
+}
+
+.img_box.one {
+  background-image: url(/src/resources/images/one.jpg);
+}
+
+.img_box.two {
+  background-image: url(/src/resources/images/two.jpg);
+}
+
+.img_box.three {
+  background-image: url(/src/resources/images/three.jpg);
+}
+
+.img_box.four {
+  background-image: url(/src/resources/images/four.jpg);
+}
+
+.img_box.five {
+  background-image: url(/src/resources/images/five.jpg);
+}
+
+.img_box.six {
+  background-image: url(/src/resources/images/six.jpg);
+}
+
+.arrow_left_box {
+  width: 20px;
+  border-right: 1px solid #ccc;
+  display: inline-block;
+  height: 60px;
+  cursor: pointer;
+}
+
+.arrow_right_box {
+  width: 22px;
+  display: inline-block;
+  height: 60px;
+  cursor: pointer;
+}
+
+.select_webtoon_box {
+  width: 582px;
+  float: left;
+  height: 60px;
+}
+
+.select_box {
+  width: 540px;
+  display: inline-block;
+  height: 60px;
+  overflow: hidden;
+}
+
+.select_box_img {
+  width: 135px;
+  display: inline-block;
+  height: 60px;
+  border-right: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.select_box_img:hover {
+  border-bottom: 2px solid #383636;
+}
+
+.select_box_img.one {
+  background-image: url(/src/resources/images/one_text.jpg);
+}
+
+.select_box_img.two {
+  background-image: url(/src/resources/images/two_text.jpg);
+}
+
+.select_box_img.three {
+  background-image: url(/src/resources/images/three_text.jpg);
+}
+
+.select_box_img.four {
+  background-image: url(/src/resources/images/four_text.jpg);
+}
+
+.select_box_img.five {
+  background-image: url(/src/resources/images/five_text.jpg);
+}
+
+.select_box_img.six {
+  background-image: url(/src/resources/images/six_text.jpg);
+}
+
+.arrow_right {
+  background-image: url(/src/resources/images/right_arrow.png);
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  margin-top: 17px;
+  position: relative;
+  right: 3px;
+}
+
+.arrow_left{
+  background-image: url(/src/resources/images/left_arrow.png);
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  margin-top: 17px;
+  position: relative;
+  left: -6px;
+}
+
+.overflow_box {
+    width: 1400px;
+    height: 60px;
+    position: relative;
+    transition: all .4s ease-in-out;
+}
+
+.overflow_box.zero {
+  left: 0px;
+}
+
+.overflow_box.one {
+  left: -135px;
+}
+
+.overflow_box.two {
+  left: -270px;
+}
+
+.overflow_box.three {
+  left: -405px;
+}
+
+
+
+.best_preivew_img {
+  width: 40px;
+  height: 40px;
+  float: left;
+  background-color: #2dda7d;
+  border-radius: 50px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 600;
+  line-height: 40px;
+  color: white;
+  margin-left: 5px;
+}
+
+.privew_bold {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 14px;
+  margin-left: 5px;
+}
+
+.privew_s {
+  display: inline-block;
+  font-size: 10px;
+  color: #817c7c;
+  margin-left: 8px;
+  vertical-align: top;
+}
+
+.text_b {
+  width: 89px;
+  float: left;
+}
+
+.recommend_new_webtown {
+  float: right;
+  width: 290px;
+  height: 257px;
+  padding: 0 35px;
+  background: #f9f9fc;
+  border: 1px solid #ebebeb;
+  margin: 0 6px;
+}
+
+
+.sub_title {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: '나둠고딕';
+  margin-bottom: 10px;
+}
+
+.new_webtown_img {
+  background-image: url(/src/resources/images/newtoon1.jpg);
+  width: 218px;
+  height: 120px;
+}
+
+.new_webtown_title {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.new_webtown_text {
+  font-size: 10px;
+  color: #a0a0a5;
+}
+
+.webtoon_slider {
+  width: 750px;
+  display: inline-block;
+  margin-top: 30px;
+}
+
+
+/***************** slider.css *********************/
+.slider_text {
+  font-size: 50px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: left;
+  margin: 30px 0 0 20px;
+  font-weight: 600;
+}
+
+#main-slider-container {
+  margin: 0 auto;
+}
+
+.slider-icon.left {
+  left: -50px !important;
+}
+
+.slider-icon.right {
+  right: -50px !important;
+}
+
+.slider-card:hover .slider-card-image {
+  transform: scale(1.08);
+  transition-duration: 0.4s;
+}
+
+.slider-card {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
+  cursor: pointer;
+  margin: 20px;
+}
+
+.slider-card:hover {
+  box-shadow: 0 4px 1rem -2px #999;
+  transform: translateY(-3px);
+  transition-duration: 0.4s;
+}
+
+.slick-slide {
+  padding: 20px 60px;
+}
+
+.slider_h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  margin-top:60px;
+  margin-bottom:40px;
+}
+
+.arrow_left.s {
+  position: absolute;
+  left: -38px;
+  top: 247px;
+  width: 70px;
+  height: 70px;
+  background-size: 70px;
+}
+
+.arrow_right.s {
+  position: absolute;
+  right: -38px;
+  top: 247px;
+  width: 70px;
+  height: 70px;
+  background-size: 70px;
+}
+
+/*******************************************/
+
+.webtown_ranking_box {
+  vertical-align: top;
+  display: inline-block;
+  width: 300px;
+  height: 400px;
+  margin-left: 100px;
+  margin-top: 222px;
+  border: 1px solid #ccc;
+
+}
+
+.ranking_webtown_title {
+  font-weight: 600;
+  padding: 5px 5px 5px 10px;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+  color: #1ed874;
+}
+
+.ranking_selct_text {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  border-bottom:1px solid #ccc;
+  cursor: pointer;
+  font-weight: 600;
+  color:#454545;
+  margin-bottom:11px;
+}
+
+.ranking_selct_text:hover {
+  background-color: #ecfff0;
+}
+
+.ranking_selct_text.on {
+  border-width: 0;
+}
+
+.ranking_box {
+  font-size: 15px;
+  color: #6d5a5a;
+}
+
+.raking_num {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-left: 10px;
+  margin-bottom:3px;
+  color: #00cb76;
+  font-weight: 600;
+  width: 18px;
+}
+
+.raking_name {
+  display: inline-block;
+  width: 137px;
+}
+
+.recommend_img {
+  background-image: url(/src/resources/images/recommend.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+  /* 로그인 */
+
+.login {
+  width: 100%;
+  height: 937px;
+  float: left;
+  background: linear-gradient( 331deg, #9fdf95 , #27b5b7 );
+}
+
+.login_box {
+  width: 600px;
+  height: 450px;
+  margin: 0 auto;
+  background-color: white;
+  margin-top: 256px;
+  border-radius: 32px;
+  box-shadow: 0 0 44px #6f6f6f;
+  border: 1px solid #bef5d7;
+}
+
+.login_title {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #434343;
+  margin-bottom: 64px;
+}
+
+.login_input {
+  margin-top: 30px;
+  width: 400px;
+  margin-left: 100px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: white;
+  box-shadow: 0 6px 15px #d6d6d6;
+  border:0;
+}
+
+.login_input:focus {
+  border: 1px solid #00cb76;
+}
+
+.login_input:focus-visible {
+  border: 1px solid #00cb76;
+  outline: 0px;
+}
+
+
+.login_button {
+  width: 140px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 60px;
+  background-color: #92da98;
+  border-radius: 40px;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+}
+
+.sign_up_page_text {
+  text-align: center;
+  color: #ccc;
+  margin-top: 19px;
+  font-size: 10px;
+}

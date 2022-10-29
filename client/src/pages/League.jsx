@@ -1,9 +1,9 @@
-function Mint() {
+function League() {
     return (
       <div>
       </div>
     );
   }
   
-  export default Mint;
+  export default League;
   
