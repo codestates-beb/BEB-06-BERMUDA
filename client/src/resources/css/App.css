@@ -544,3 +544,115 @@ div {
   margin-top: 19px;
   font-size: 10px;
 }
+
+
+/***************** create.css *********************/
+
+.create_main {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.file_box {
+  padding: 4px;
+  cursor: pointer;
+  border: 3px dashed rgb(204, 204, 204);
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+}
+
+.file_box:hover .file_label_div {
+  background-color: #cccccc;
+}
+
+.file_label_div {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.create_input {
+  background-color: transparent;
+  border: 2px solid #c5c1c1;
+  height: 48px;
+  outline: none;
+  padding: 0px 12px 0px 0px;
+  min-width: 0px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  width: 600px;
+}
+.create_input:focus {
+  border: 2px solid #8b7979;
+}
+
+.description {
+  width: 100%;
+  height: auto;
+  padding: 12px;
+  resize: vertical;
+  border: 2px solid #c5c1c1;
+  background-color: transparent;
+  border-radius: 10px;
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.input_name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0;
+  padding-left: 10px;
+}
+
+.main_text {
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin: 100px 0 50px 0;
+  color: #1ed874;
+}
+
+.create_button {
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: rgb(32, 129, 226);
+  border: 2px solid rgb(32, 129, 226);
+  color: rgb(255, 255, 255);
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.button_box {
+  width: 105px;
+  margin: 50px auto;
+}
+
+.imageFile {
+  position: relative;
+}
+
+.uploadImage {
+  width: 304px;
+  height: 304px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  border: 0;
+  outline: 0;
+  background-color: #fff;
+  display: none;
+}
+
+.uploadImage.on {
+  display: inline-block;
+}
+
+/*************************************************/
