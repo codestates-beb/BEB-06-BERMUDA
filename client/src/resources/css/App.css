@@ -179,6 +179,13 @@ div {
   height: 60px;
   border-right: 1px solid #ccc;
   cursor: pointer;
+  position: relative;
+}
+
+.select_box_img a {
+  width: 100%;
+  height: 100%;
+  position: absoulte;
 }
 
 .select_box_img:hover {
@@ -325,7 +332,7 @@ div {
 }
 
 .webtoon_slider {
-  width: 750px;
+  width: 650px;
   display: inline-block;
   margin-top: 30px;
 }
@@ -375,8 +382,21 @@ div {
 }
 
 .slick-slide {
-  padding: 20px 60px;
+  padding: 20px 54px;
 }
+
+.slick-slide img {
+width: 218px;
+height: 120px;
+background-size: 218px 120px;
+}
+
+.overflow_img {
+  width: 218px;
+  height: 120px;
+  overflow: hidden;
+}
+
 
 .slider_h1 {
   text-align: center;
@@ -404,16 +424,98 @@ div {
   background-size: 70px;
 }
 
+.on1 {
+  background-image: url(/src/resources/images/img_1.jpg);
+}
+.on2 {
+  background-image: url(/src/resources/images/img_2.jpg);
+}
+.on3 {
+  background-image: url(/src/resources/images/img_3.jpg);
+}
+.on4 {
+  background-image: url(/src/resources/images/img_4.jpg);
+}
+.on5 {
+  background-image: url(/src/resources/images/img_5.jpg);
+}
+.on6 {
+  background-image: url(/src/resources/images/img_6.jpg);
+}
+.on7 {
+  background-image: url(/src/resources/images/img_7.jpg);
+}
+.on8 {
+  background-image: url(/src/resources/images/img_8.jpg);
+}
+.on9 {
+  background-image: url(/src/resources/images/img_9.jpg);
+}
+
+.on10 {
+  background-image: url(/src/resources/images/img_10.jpg);
+}
+
+.on11 {
+  background-image: url(/src/resources/images/img_11.jpg);
+}
+.on12 {
+  background-image: url(/src/resources/images/img_12.jpg);
+}
+.on13 {
+  background-image: url(/src/resources/images/img_13.jpg);
+}
+.on14 {
+  background-image: url(/src/resources/images/img_14.jpg);
+}
+.on15 {
+  background-image: url(/src/resources/images/img_15.jpg);
+}
+.on16 {
+  background-image: url(/src/resources/images/img_16.jpg);
+}
+
+
+.sider_title {
+  font-weight: 600;
+    margin-left: 3px;
+    margin-top: 3px;
+}
+
+.sider_sub_text {
+  color: #a9a4a4;
+  font-size: 13px;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+
+.sider_sub_text2 {
+  font-size: 12px;
+  color: #393636;
+  margin-top: 8px;
+  margin-left: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 214px;
+  white-space: normal;
+  word-wrap: break-word;
+  -webkit-line-clamp: 4;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
 /*******************************************/
 
 .webtown_ranking_box {
   vertical-align: top;
   display: inline-block;
   width: 300px;
-  height: 400px;
+  height: 360px;
   margin-left: 100px;
   margin-top: 222px;
   border: 1px solid #ccc;
+  float: right;
 
 }
 
@@ -468,7 +570,7 @@ div {
 }
 
 .recommend_img {
-  background-image: url(/src/resources/images/recommend.png);
+  background-image: url(/src/resources/images/recommend2.png);
   width: 20px;
   height: 20px;
   background-size: 20px;

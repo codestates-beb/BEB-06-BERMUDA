@@ -5,7 +5,7 @@ import { React, useState } from "react";
 // import { create } from "ipfs-http-client";
 // import { Buffer } from "buffer";
 // import abi from "../abi/erc721abi.json";
-import Web3 from "web3";
+// import Web3 from "web3";
 
 //IPFS
 const PROJECT_ID = "2Ga3H3IrS2dUcN0JZHXUkXg0IvV"; // ipfs 에서 받은 것
