@@ -1,7 +1,9 @@
 CREATE TABLE `user` (
-  `nickname` varchar(255),
+  `user_id` varchar(255),
   `password` varchar(255),
+  `nickname` varchar(255),
   `address` varchar(255),
+  `private_key` varchar(255),
   `token_amount` int,
   `eth_amount` int,
   `created_at` timestamp

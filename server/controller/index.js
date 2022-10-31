@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import GetSignUpData from "../services/GetSignUpData.js";
+import Login from "../services/Login.js";
 import Web3 from "web3"
+// import dotenv from "dotenv";
 
 const app = express();
 const port = 8080;
@@ -10,7 +11,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const accounts = await web3.eth.getAccounts();
 const serverAddress = accounts[0]
 
-// console.log("Server Address:", serverAddress);
 // dotenv.config();
 
 async function getAccounts() {
@@ -25,23 +25,25 @@ async function getAccounts() {
 }
 
 app.use(express.json());
-app.listen(4000);
+// app.listen(4000);
 app.use(cors());
 
 app.get("/", function (req, res) {
-    res.send("Hello World");
+  res.send("Hello World");
 });
 
 app.get("/server/account", function (req, res) {
-  res.send(serverAddress);
+  res.send(res);
 });
 
-app.get("/user/join", function (req, res) {
+app.post("/user/join", function (req, res) {
+  const userInfo = req.body.signUp;
+  GetSignUpData(userInfo);
+});
 
-  // console.log(req.body);
-  GetSignUpData();
-  res.send(req.body);
-
+app.post("/user/login", function (req, res) {
+  const userInfo = req.body.signIn;
+  res.send(Login(userInfo));
 });
 
 app.listen(port, () => {
