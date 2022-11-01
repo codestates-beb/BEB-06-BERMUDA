@@ -180,7 +180,7 @@ function Mint(props) {
       <div className="button_box">
         <button className="create_button" > 
         {/* onClick={minting} */}
-          Create
+          create
         </button>
       </div>
     </div>
