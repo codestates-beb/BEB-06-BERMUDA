@@ -37,8 +37,14 @@ app.get("/server/account", function (req, res) {
 });
 
 app.post("/user/join", function (req, res) {
-  const userInfo = req.body.signUp;
-  GetSignUpData(userInfo);
+  // const userInfo = req.body.signUp;
+  // GetSignUpData(userInfo);
+  const test = {
+    user_id: "test20",
+    password: "demon",
+    nickname: "test20"
+  };
+  GetSignUpData(test);
 });
 
 app.post("/user/login", function (req, res) {
