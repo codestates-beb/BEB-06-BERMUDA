@@ -1,4 +1,5 @@
 import express from "express";
+
 import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
@@ -37,8 +38,14 @@ app.get("/server/account", function (req, res) {
 });
 
 app.post("/user/join", function (req, res) {
-  const userInfo = req.body.signUp;
-  GetSignUpData(userInfo);
+  // const userInfo = req.body.signUp;
+  // GetSignUpData(userInfo);
+  const test = {
+    user_id: "test20",
+    password: "demon",
+    nickname: "test20"
+  };
+  GetSignUpData(test);
 });
 
 app.post("/user/login", function (req, res) {
@@ -47,5 +54,5 @@ app.post("/user/login", function (req, res) {
 });
 
 app.listen(port, () => {
-	console.log('Ganache Local Network Connected : http://localhost:8080/');
+  console.log('Ganache Local Network Connected : http://localhost:8080/');
 });
