@@ -12,6 +12,8 @@ import League from './pages/League.jsx'
 
 function App() {
   const [section, setSection] = useState("main");
+  const [ login , setLogin ] = useState(false);
+  const [userData , setUserData] = useState({});
 
 
   const onClickSection = (e) =>{ 
@@ -27,7 +29,7 @@ function App() {
           <Route path='/' element={<MainPage />} />
           <Route path='/mypage' element={<MyPage section={section} />} />
           <Route path='/mint' element={<Mint />} />
-          <Route path='/signin' element={<SignIn />}/>
+          <Route path='/signin' element={<SignIn setLogin={setLogin} setUserData={setUserData} />}/>
           <Route path='/League' element={<League />}/>
         </Routes>
       </BrowserRouter> 
