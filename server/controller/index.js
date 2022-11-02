@@ -1,4 +1,5 @@
 import express from "express";
+
 import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
@@ -53,5 +54,5 @@ app.post("/user/login", function (req, res) {
 });
 
 app.listen(port, () => {
-	console.log('Ganache Local Network Connected : http://localhost:8080/');
+  console.log('Ganache Local Network Connected : http://localhost:8080/');
 });

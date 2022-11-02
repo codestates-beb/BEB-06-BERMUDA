@@ -1,4 +1,5 @@
 import mysql from 'mysql';
+
 import dotenv from "dotenv";
 import Web3 from "web3"
 import Abi from '/home/seominseok/바탕화면/project/incentive-community/BEB-06-SECOND-06/server/services/Abi.js';
@@ -50,6 +51,7 @@ const GetSignUpData = (data) => {
       throw id_err;
     }
   })
+ 
   connection.query(`SELECT * FROM user WHERE nickname = "${data.nickname}"`, function(error, results, fields) {
     if (error) throw error;
     if (results.length !== 0){
