@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 function Header(props) {
@@ -9,10 +10,20 @@ function Header(props) {
         </Link>
         <div className="menu_box" >
 
-
+          { !props.login ? ( 
           <Link to = "/SignIn">
             <div className={"menu_text"  + (props.section == "login" ? " on" : "" )} value={"login"}  onClick={props.onClickSection} >로그인</div> 
           </Link>
+          ) : (
+           <Fragment>
+              <Link to = "/mypage">
+               <div className={"menu_text"  + (props.section == "mypage" ? " on" : "" )} value={"mypage"}  onClick={props.onClickSection} >마이페이지</div> 
+              </Link>
+              <div className={"menu_text"} onClick={props.logOut} > 로그아웃 </div>
+            </Fragment>
+          )}
+
+
           <Link to = "/Mint">
             <div  className={"menu_text"  + (props.section == "create" ? " on" : "" )} value={"create"} onClick={props.onClickSection}  >create</div>
           </Link>

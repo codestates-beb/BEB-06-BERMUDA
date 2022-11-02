@@ -8,19 +8,19 @@ function Signup(props) {
     const [ nickName ,setNickName ] = useState();
 
     const onChangeId = (e) => {
-      setId(e.Target.value);
+      setId(e.target.value);
     }
 
     const onChangePassword = (e) => {
-      setPassword(e.Target.value);
+      setPassword(e.target.value);
     }
 
     const onChangePassword2 = (e) => {
-      setPassword2(e.Target.value);
+      setPassword2(e.target.value);
     }
 
     const onChangeNickName = (e) => {
-      setNickName(e.Target.value);
+      setNickName(e.target.value);
     }
 
     const onSignUp = () => {
@@ -37,11 +37,12 @@ function Signup(props) {
 
       axios.post('http://localhost:8080/user/join', {signUp})
       .then(function(res){
-        console.log(res)
+        console.log("res",res);
         alert("화원 가입이 완료됐습니다");
         props.onCloseSignIn();
       }).catch(function (error) {
         console.log(error);
+        alert(error);
       });
 
     }
@@ -53,7 +54,7 @@ function Signup(props) {
       <div className="dim" ></div>
         <div className="neon_buy_popup" >
             <div style={{ textAlign : "right" , color: "white" }}  onClick={props.onCloseSignIn} >
-              <span class="material-symbols-outlined close">
+              <span className="material-symbols-outlined close">
                 cancel
               </span>
             </div>
@@ -69,7 +70,7 @@ function Signup(props) {
 
               <div  className="relative">
                 <input className="login_input" placeholder="닉네임" onChange={onChangeNickName}  value={nickName} ></input>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                   badge
                 </span>
               </div>

@@ -9,11 +9,11 @@ function SiginIn(props) {
     const [ password ,setPassword ] = useState();
 
     const onChangeId = (e) => {
-      setId(e.Target.value);
+      setId(e.target.value);
     }
 
     const onChangePassword = (e) => {
-      setPassword(e.Target.value);
+      setPassword(e.target.value);
     }
 
     const onOpenSignIn = () => {
@@ -33,20 +33,28 @@ function SiginIn(props) {
         password: password,
       };
 
-        axios.post('http://localhost:8080/user/login', {signIn})
-        .then(function(res){
-          props.setUserData(res.data);
-          props.setLogin(true);
-          alert("로그인 성공!");
+        // axios.post('http://localhost:8080/user/login', {signIn})
+        // .then(function(res){
+        //   props.setUserData(res.data);
+        //   props.setLogin(true);
+        //   alert("로그인 성공!");
+        //   navigate("/");
+        // }).catch(function (error) {
+        //   console.log(error);
+        // });
 
-         
-          navigate("/");
-          
+        const data = {
+          nickname: "알파카",
+          address : "0x60A1764c74eaCa63344D2235Ee5AC1fA0D59Cd9D",
+          eth_amount : "1",
+          token_bet : "20",
+          nft: []
+        }
 
-        }).catch(function (error) {
-          console.log(error);
-        });
-      
+        props.setUserData(data);
+        props.setLogin(true);
+        navigate("/");
+        alert("로그인 성공!");
 
     }
 
@@ -58,14 +66,14 @@ function SiginIn(props) {
             <div className="login_title" >로그인</div>
 
             <div className="relative">
-              <input className="login_input" placeholder="아이디" onChange={onChangeId} value={id} ></input>
+              <input className="login_input" placeholder="아이디" onChange={onChangeId} value={id}  ></input>
               <span className="material-symbols-outlined">
                   person
               </span>
             </div>
 
             <div  className="relative">
-              <input className="login_input" placeholder="비밀번호"  onChange={onChangePassword} value={password}   ></input>
+              <input className="login_input" placeholder="비밀번호"  onChange={onChangePassword} value={password}  type="password"  ></input>
               <span className="material-symbols-outlined">
               lock
               </span>
