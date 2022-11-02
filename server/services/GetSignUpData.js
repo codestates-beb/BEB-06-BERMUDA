@@ -2,13 +2,13 @@ import mysql from 'mysql';
 import dotenv from "dotenv";
 import Web3 from "web3"
 import Abi from '/home/seominseok/바탕화면/project/incentive-community/BEB-06-SECOND-06/server/services/Abi.js';
+import SendToken from './SendToken.js';
+import CreateWallet from './CreateWallet.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const contractHx = '0x6c18ed0E81079BF3A81255b9f8194b75F546eBdc'; // 고정
 const contract = new web3.eth.Contract(Abi, contractHx); // abi : 복사해서 그대로 // 고정
-
 const accounts = await web3.eth.getAccounts();
-const serverPrivateKey = accounts[0]
 
 dotenv.config();
 
@@ -50,7 +50,6 @@ const GetSignUpData = (data) => {
       throw id_err;
     }
   })
- 
   connection.query(`SELECT * FROM user WHERE nickname = "${data.nickname}"`, function(error, results, fields) {
     if (error) throw error;
     if (results.length !== 0){
@@ -60,30 +59,11 @@ const GetSignUpData = (data) => {
   })
 
   // ####### 문제 없다면 지갑 생성 #######
-  const wallet = web3.eth.accounts.create();
-  console.log(wallet)
+  const wallet = CreateWallet();
 
   // ####### 생성된 지갑으로 회원가입 축하 100 토큰 전송 #######
-  // https://ethereum.stackexchange.com/questions/95218/how-can-i-transfer-tokens-of-my-erc20-automatically-from-the-server
-
-  var transactionData = contract.methods.transfer(wallet.address, 100).encodeABI(); //Create the data for token transaction.
-  var rawTransaction = {"to": contractHx, "gas": 100000, "data": transactionData }; 
-  web3.eth.accounts.signTransaction(rawTransaction, "d1d2f5e5876daaa794942475c9e24477c65e453a8f32b5519d5ebda2f04fe52d")
-  .then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
-    //.then(function(receipt){ console.log("Transaction receipt: ", receipt); getETHBalanceOf();  })
-  .then(req => { 
-    /* The trx was done. Write your acctions here. For example getBalance */
-    getTOKENBalanceOf(wallet.address).then ( balance => { 
-      console.log(wallet.address + " Token Balance: " + balance); 
-    });
-    return true;  
-  });      
-      
-  // ###### 토큰 잔액 확인 함수 : 위에서 호출 ######
-  async function getTOKENBalanceOf(address){
-      return await contract.methods.balanceOf(address).call();                        
-  }   
-
+  SendToken(wallet.address, 100);
+  
   connection.query( 
     `INSERT INTO user (user_id, password ,nickname, address, private_key, eth_amount, token_amount, token_bet) 
     VALUES ("${data.user_id}", "${data.password}", "${data.nickname}", "${wallet.address}", "${wallet.privateKey}", "0", "100", "0")`,
