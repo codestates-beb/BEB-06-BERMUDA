@@ -1,42 +1,42 @@
 /* eslint-disable */
 
 import { React, useState } from "react";
-// import axios from "axios";
-// import { create } from "ipfs-http-client";
-// import { Buffer } from "buffer";
-// import abi from "../abi/erc721abi.json";
-// import Web3 from "web3";
+import axios from "axios";
+import { create } from "ipfs-http-client";
+import { Buffer } from "buffer";
+import erc721Abi from "../abi/erc721Abi";
+import Web3 from "web3";
 
-//IPFS
-const PROJECT_ID = "2Ga3H3IrS2dUcN0JZHXUkXg0IvV"; // ipfs 에서 받은 것
-const API_KEY = "d49056eba0f599b71e267f370f433752"; // ipfs 에서 받은 것
-// const auth =
-//   "Basic " + Buffer.from(PROJECT_ID + ":" + API_KEY).toString("base64");
+//IPFS - infura.io
+const PROJECT_ID = "2GZ2MSI4YWvA2MXYwUabhDymfbB"; // ipfs 에서 받은 것
+const API_KEY = "6b9fd85da75670013de850024f494b80"; // ipfs 에서 받은 것
+const auth =
+  "Basic " + Buffer.from(PROJECT_ID + ":" + API_KEY).toString("base64");
 
-// const client = create({
-//   host: "ipfs.infura.io",
-//   port: 5001,
-//   protocol: "https",
-//   headers: {
-//     authorization: auth,
-//   },
-// });
+  const client = create({
+    host: "infura-ipfs.io",
+    port: 5001,
+    protocol: "https",
+    headers: {
+    authorization: auth,
+    },
+  });
 
 function Mint(props) {
-  const selectList = ["art", "sports", "photography"];
+  // const selectList = ["art", "sports", "photography"];
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [imageView, setImage] = useState(false);
   const [price, setPrice] = useState();
-  // const [tokenId, setTokenId] = useState();
-  // const [theme, setTheme] = useState(["art", "sport", "photo"]);
+  //const [tokenId, setTokenId] = useState();
+  //const [theme, setTheme] = useState(["art", "sport", "photo"]);
   const [theme, setTheme] = useState("");
   const [account, setAccount] = useState();
   const [imgFile, setImgFile] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [tokenid, setTokenid] = useState(0);
   const [contractAddress, seta] = useState(
-    "0x395FFcA1B7CA2d98A06B89a750F0fB1626D6d4Ef"
+    "0xd8711970b278DD08C66B86D0A63a582a102c82D6"
   );
 
   const uploadImage = (e) => {
@@ -63,50 +63,57 @@ function Mint(props) {
     setTheme(e.target.value);
   };
 
-  // const minting = async () => {
-  //   const imgUrl = await client.add(imgFile); // state에서 가져오기
-  //   // console.log("https://openseahello.infura-ipfs.io/ipfs/" + imgUrl.path);
-  //   setImgUrl(imgUrl);
+    const minting = async () => {
+      
+      const imgUrl = await client.add(imgFile); // state에서 가져오기
+      console.log("https://nft999.infura-ipfs.io/ipfs/" + imgUrl.path);
+      setImgUrl(imgUrl);
+      console.log(imgUrl);
 
-  //   //메타 데이터
-  //   const _json = {
-  //     name: name,
-  //     description: desc,
-  //     image: "https://openseahello.infura-ipfs.io/ipfs/" + imgUrl.path,
-  //   };
+     //메타 데이터
+      const _json = { 
+        name: name,
+        description: desc,
+        image: "https://nft999.infura-ipfs.io/ipfs/" + imgUrl.path,
+      };
 
-  //   const metaData = await client.add(JSON.stringify(_json));
-  //   const metaDataUrl =
-  //     "https://openseahello.infura-ipfs.io/ipfs/" + metaData.path;
-  //   console.log(metaDataUrl); // 메타데이터(nft 데이터)
+      const metaData = await client.add(JSON.stringify(_json));
+      const metaDataUrl =
+        "https://nft999.infura-ipfs.io/ipfs/" + metaData.path;
+      console.log(metaDataUrl); // 메타데이터(nft 데이터)
 
-  //   const web3 = new Web3(window.ethereum);
-  //   const accounts = await web3.eth.getAccounts();
-  //   setAccount(accounts[0]);
+      // const web3 = new Web3(window.ethereum);
+      const web3 = new Web3('ws:127.0.0.1:7545')
+      const accounts = await web3.eth.getAccounts(); // 대신 서버에서 개정 주소 받아오기
+      setAccount(accounts[0]);
+      
+      // 서버에서 계정 주소 받아오기
+      axios
+        .get("http://localhost:8080/server/account")
 
-  //   const transaction = {
-  //     from: accounts[0],
-  //     gas: 5000000,
-  //     gasPrice: web3.utils.toWei("1.5", "gwei"),
-  //   };
-  //   // 가스비 설정
+      const transaction = {
+        from: accounts[0],
+        gas: 5000000,
+        gasPrice: web3.utils.toWei("1.5", "gwei"),
+      };
+        // 가스비 설정
 
-  //   //abi 컨트랙트 함수 모음
-  //   //contractAddress contract 돌아가는 주소
-  //   const ERC721Contract = new web3.eth.Contract(abi, contractAddress);
+        //abi 컨트랙트 함수 모음
+        //contractAddress contract 돌아가는 주소
+      const ERC721Contract = new web3.eth.Contract(erc721Abi, contractAddress);
 
-  //   const Minting = await ERC721Contract.methods
-  //     .mintNFT(accounts[0], metaDataUrl, price)
-  //     .send(transaction)
-  //     .then((res) => {
-  //       alert("minting success");
-  //       afterMinting();
-  //       setTokenid(tokenid + 1);
-  //       console.log(tokenid);
-  //     });
+      const Minting = await ERC721Contract.methods
+        .mintNFT(accounts[0], metaDataUrl, price)
+        .send(transaction)
+        .then((res) => {
+          alert("minting success");
+          afterMinting();
+          setTokenid(tokenid + 1);
+          console.log(tokenid);
+        });
 
-  //   return Minting;
-  // };
+        return Minting;
+    };
 
   const afterMinting = () => {
     const formData = new FormData();
@@ -161,14 +168,27 @@ function Mint(props) {
           type="text"
           placeholder="Price"
         />
-        <div className="input_name">Theme</div>
+        <div className="input_name">Webtoon</div>
         <select className="create_input" onChange={onChangeTheme} value={theme}>
           <option disabled={true} value="">
-            Select theme...
+            Select webtoon...
           </option>
-          <option value="art">art</option>
-          <option value="sports">sports</option>
-          <option value="photography">photography</option>
+          <option value="mulwi">물위의 우리</option>
+          <option value="engmu">앵무살수</option>
+          <option value="nano">나노 마신</option>
+          <option value="kubera">쿠베라</option>
+          <option value="yeonye">연애혁명</option>
+          <option value="janbule">잔불의 기사</option>
+          <option value="sunjung">순정빌런</option>
+          <option value="inseng">인생존망</option>
+          <option value="byeole">별이삼샵</option>
+          <option value="ijegot">이제 곧 죽습니다</option>
+          <option value="illexid">일렉시드</option>
+          <option value="bangbaek">방백남녀</option>
+          <option value="jeongjijok">전지적 독자 시점</option>
+          <option value="simyeon">심연의 하늘</option>
+          <option value="buildup">빌드업</option>
+          <option value="shindorim">신도림</option>
         </select>
         <div className="input_name">Description</div>
         <textarea
@@ -178,7 +198,7 @@ function Mint(props) {
         />
       </div>
       <div className="button_box">
-        <button className="create_button" > 
+        <button className="create_button" onClick={minting}> 
         {/* onClick={minting} */}
           create
         </button>

@@ -41,9 +41,9 @@ app.post("/user/join", function (req, res) {
   // const userInfo = req.body.signUp;
   // GetSignUpData(userInfo);
   const test = {
-    user_id: "test20",
+    user_id: "test24",
     password: "demon",
-    nickname: "test20"
+    nickname: "test24"
   };
   GetSignUpData(test);
 });
