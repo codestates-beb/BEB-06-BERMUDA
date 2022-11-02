@@ -2,7 +2,7 @@ import mysql from 'mysql';
 
 import dotenv from "dotenv";
 import Web3 from "web3"
-import Abi from '/home/seominseok/바탕화면/project/incentive-community/BEB-06-SECOND-06/server/services/Abi.js';
+import Abi from './Abi.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const contractHx = '0x6c18ed0E81079BF3A81255b9f8194b75F546eBdc'; // 고정
