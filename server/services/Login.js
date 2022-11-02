@@ -19,16 +19,13 @@ const Login = (data) => {
 
 	connection.query("USE webtoon", function (error, results, fields) {
 		if (error) throw error;
-		// console.log(results)
 	});
+
 	connection.query(`SELECT * FROM user WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
-		debugger;
-
 		if (error) throw error;
-
-    if (results.length === 0 || results[0].password !== data.password){
-			// return으로 false값을 보내고싶음
-    }
+		if (results.length === 0 || results[0].password !== data.password){
+			return false;
+		}
   })
 	return true;
 }
