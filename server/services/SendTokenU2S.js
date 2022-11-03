@@ -8,14 +8,16 @@ const accounts = await web3.eth.getAccounts();
 
 // https://ethereum.stackexchange.com/questions/95218/how-can-i-transfer-tokens-of-my-erc20-automatically-from-the-server
 
-const SendToken = async (to, amount) => {
+const SendTokenU2S = async (fromKey, to, amount) => {
+
+	console.log("bet:", amount)
 
   var transactionData = contract.methods.transfer(to, amount).encodeABI(); //Create the data for token transaction.
   var rawTransaction = {"to": contractHx, "gas": 100000, "data": transactionData }; 
 
-  web3.eth.accounts.signTransaction(rawTransaction, process.env.SERVER_PRIVATE_KEY)
+  web3.eth.accounts.signTransaction(rawTransaction, fromKey)
   .then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
     //.then(function(receipt){ console.log("Transaction receipt: ", receipt); getETHBalanceOf();  })
 }
 
-export default SendToken;
+export default SendTokenU2S;
