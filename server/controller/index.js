@@ -4,15 +4,12 @@ import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
-// import dotenv from "dotenv";
 
 const app = express();
 const port = 8080;
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const accounts = await web3.eth.getAccounts();
 const serverAddress = accounts[0]
-
-// dotenv.config();
 
 async function getAccounts() {
   try {
@@ -38,14 +35,8 @@ app.get("/server/account", function (req, res) {
 });
 
 app.post("/user/join", function (req, res) {
-  // const userInfo = req.body.signUp;
-  // GetSignUpData(userInfo);
-  const test = {
-    user_id: "test24",
-    password: "demon",
-    nickname: "test24"
-  };
-  GetSignUpData(test);
+  const data = req.body.signUp;
+  GetSignUpData(data,res);
 });
 
 app.post("/user/login", function (req, res) {
