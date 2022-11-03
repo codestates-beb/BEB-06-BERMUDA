@@ -4,12 +4,9 @@ import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
-<<<<<<< HEAD
 import SaveNftData from "../services/SaveNftData.js";
 import GetNftData from "../services/GetNftData.js"
 // import dotenv from "dotenv";
-=======
->>>>>>> client
 
 const app = express();
 const port = 8080;
