@@ -4,6 +4,7 @@ import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
 import Vote from "../services/Vote.js";
+import Bet from "../services/Bet.js";
 import SaveNftData from "../services/SaveNftData.js";
 import GetNftData from "../services/GetNftData.js"
 // import dotenv from "dotenv";
@@ -47,12 +48,17 @@ app.post("/user/login", function (req, res) {
   res.send(Login(userInfo));
 });
 
-app.get("/user/vote", function (req, res) {
+app.post("/user/vote", function (req, res) {
   const test = {
-    user_id: "test2"
+    user_id: "test3"
   };
   Vote(test);
-});
+}); // 투표가 끝난 뒤 최신 DB 전송 
+
+app.post("/user/bet", function (req, res){
+  const data = req.body;
+  Bet(data, res);
+}) // 배팅이 끝난 뒤 최신 DB 전송
 
 app.post('/nft/create', SaveNftData);
 app.get('/nft/:user_id', GetNftData);
