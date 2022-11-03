@@ -37,12 +37,15 @@ function Signup(props) {
 
       axios.post('http://localhost:8080/user/join', {signUp})
       .then(function(res){
-        console.log("res",res);
-        alert("화원 가입이 완료됐습니다");
+        alert("회원가입 완료");
         props.onCloseSignIn();
       }).catch(function (error) {
-        console.log(error);
-        alert(error);
+        if ( error.response.data == "id") {
+          alert("동일한 아이디가 존재합니다. 다른 아이디로 입력해주세요");
+        } 
+        if ( error.response.data == "name" ) {
+          alert("동일한 닉네임이 존재합니다. 다른 닉네임으로 입력해주세요");
+        }
       });
 
     }
