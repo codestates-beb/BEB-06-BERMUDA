@@ -1,5 +1,4 @@
 import mysql from 'mysql';
-
 import dotenv from "dotenv";
 import SendToken from './SendToken.js';
 import CreateWallet from './CreateWallet.js';
@@ -27,7 +26,7 @@ const GetSignUpData =  (data ,res) => {
     if (error) throw error;
   });
   connection.query(
-    "CREATE TABLE if not exists user(user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, created_at timestamp) ",
+    "CREATE TABLE if not exists user(user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, isVoted boolean, created_at timestamp) ",
     function (error, results, fields) {
       if (error) throw error;
   });
@@ -68,8 +67,8 @@ const GetSignUpDataEnd = (data,res) => {
   // ####### 생성된 지갑으로 회원가입 축하 100 토큰 전송 #######
   SendToken(wallet.address, 100);
   connection.query( 
-    `INSERT INTO user (user_id, password ,nickname, address, private_key, eth_amount, token_amount, token_bet) 
-    VALUES ("${data.user_id}", "${data.password}", "${data.nickname}", "${wallet.address}", "${wallet.privateKey}", "0", "100", "0")`,
+    `INSERT INTO user (user_id, password ,nickname, address, private_key, eth_amount, token_amount, token_bet, isVoted) 
+    VALUES ("${data.user_id}", "${data.password}", "${data.nickname}", "${wallet.address}", "${wallet.privateKey}", "0", "100", "0", false)`,
     function (error, results, fields) {
       if (error) throw error;
     }

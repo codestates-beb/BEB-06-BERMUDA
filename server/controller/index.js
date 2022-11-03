@@ -1,9 +1,9 @@
 import express from "express";
-
 import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
+import Vote from "../services/Vote.js";
 import SaveNftData from "../services/SaveNftData.js";
 import GetNftData from "../services/GetNftData.js"
 // import dotenv from "dotenv";
@@ -43,12 +43,18 @@ app.post("/user/join", function (req, res) {
 });
 
 app.post("/user/login", function (req, res) {
-  const userInfo = req.body.signIn;
+  const userInfo = req.body;
   res.send(Login(userInfo));
 });
 
-app.post('/nft/create', SaveNftData);
+app.get("/user/vote", function (req, res) {
+  const test = {
+    user_id: "test2"
+  };
+  Vote(test);
+});
 
+app.post('/nft/create', SaveNftData);
 app.get('/nft/:user_id', GetNftData);
 
 app.listen(port, () => {
