@@ -4,6 +4,8 @@ import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
+import SaveNftData from "../services/SaveNftData.js";
+import GetNftData from "../services/GetNftData.js"
 // import dotenv from "dotenv";
 
 const app = express();
@@ -52,6 +54,10 @@ app.post("/user/login", function (req, res) {
   const userInfo = req.body.signIn;
   res.send(Login(userInfo));
 });
+
+app.post('/nft/create', SaveNftData);
+
+app.get('/nft/:user_id', GetNftData);
 
 app.listen(port, () => {
   console.log('Ganache Local Network Connected : http://localhost:8080/');
