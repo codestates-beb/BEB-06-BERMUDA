@@ -1,8 +1,8 @@
 import Web3 from "web3"
-import Abi from '/home/seominseok/바탕화면/project/incentive-community/BEB-06-SECOND-06/server/services/Abi.js';
+import Abi from './Abi.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
-const contractHx = '0x6c18ed0E81079BF3A81255b9f8194b75F546eBdc'; // 고정
+const contractHx = '0x730f84FC200C929a812F51f099f88C2C86dB91C9'; // 고정
 const contract = new web3.eth.Contract(Abi, contractHx); // abi : 복사해서 그대로 // 고정
 const accounts = await web3.eth.getAccounts();
 

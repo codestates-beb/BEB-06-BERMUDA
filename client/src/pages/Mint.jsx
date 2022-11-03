@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { create } from "ipfs-http-client";
 import { Buffer } from "buffer";
@@ -27,7 +27,6 @@ function Mint(props) {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [imageView, setImage] = useState(false);
-  const [price, setPrice] = useState();
   //const [tokenId, setTokenId] = useState();
   //const [theme, setTheme] = useState(["art", "sport", "photo"]);
   const [theme, setTheme] = useState("");
@@ -51,10 +50,6 @@ function Mint(props) {
     setName(e.target.value);
   };
 
-  const onChangePrice = (e) => {
-    setPrice(e.target.value);
-  };
-
   const onChangeDesc = (e) => {
     setDesc(e.target.value);
   };
@@ -62,34 +57,62 @@ function Mint(props) {
   const onChangeTheme = (e) => {
     setTheme(e.target.value);
   };
-
-    const minting = async () => {
+  // 컴포넌트가 실행되면 userAddress 부터 받아오기
+  useEffect(() => {
+    console.log("useEffect component mounted");
+    async function getUserAddress () {
+      const result = // await axios.get('/user') 클라이언트 쪽에 저장된걸 가지고 온다 useState
+      console.log(result);
+      if (result == null) {
+        console.log('sign in first')
+      } else {
+        setAccount = result.address;
+        console.log(result.address);
+      }
+    };
+  }, []);
+    
+  const minting = async () => {
       
+    // Ipfs 에 사진이랑 올리고
       const imgUrl = await client.add(imgFile); // state에서 가져오기
       console.log("https://nft999.infura-ipfs.io/ipfs/" + imgUrl.path);
       setImgUrl(imgUrl);
       console.log(imgUrl);
 
-     //메타 데이터
+    //메타 데이터
       const _json = { 
         name: name,
         description: desc,
         image: "https://nft999.infura-ipfs.io/ipfs/" + imgUrl.path,
       };
-
+    console.log({_json});
+    
+    // Ipfs 에 메타데이터 올리고
       const metaData = await client.add(JSON.stringify(_json));
       const metaDataUrl =
         "https://nft999.infura-ipfs.io/ipfs/" + metaData.path;
       console.log(metaDataUrl); // 메타데이터(nft 데이터)
 
-      // const web3 = new Web3(window.ethereum);
-      const web3 = new Web3('ws:127.0.0.1:7545')
-      const accounts = await web3.eth.getAccounts(); // 대신 서버에서 개정 주소 받아오기
-      setAccount(accounts[0]);
       
-      // 서버에서 계정 주소 받아오기
-      axios
-        .get("http://localhost:8080/server/account")
+      // 메타 데이터 서버로 포스트 하기
+      axios.post('/nft/create', {
+        user_id: setUserAddress,
+        token_id: metaDataUrl,
+        img_id: imgUrl,
+      })
+      // 4. 서버 nft table 에 사용자 id, image url, token uri 보내고
+      // 5. 서버 지갑으로 민팅 진행 (상대방 지갑주소)
+      // 6. 서버에서 사용자 지갑 주소 가지고 오기 7.
+      // 7. Nft 전송
+      // 8. 마이 페이지에서 확인하시겠습니까?
+
+
+
+      // const web3 = new Web3(window.ethereum);
+      /* const web3 = new Web3('ws:127.0.0.1:7545')
+      const accounts = await web3.eth.getAccounts(); // 대신 서버에서 개정 주소 받아오기
+      setAccount(accounts[0]); */
 
       const transaction = {
         from: accounts[0],
@@ -103,7 +126,7 @@ function Mint(props) {
       const ERC721Contract = new web3.eth.Contract(erc721Abi, contractAddress);
 
       const Minting = await ERC721Contract.methods
-        .mintNFT(accounts[0], metaDataUrl, price)
+        .mintNFT(accounts[0], metaDataUrl)
         .send(transaction)
         .then((res) => {
           alert("minting success");
@@ -122,7 +145,6 @@ function Mint(props) {
     formData.append("name", name);
     formData.append("theme", theme);
     formData.append("tokenid", tokenid); //smartcontract 에서 정보 받아서 넘겨주기
-    formData.append("price", price);
     formData.append("description", desc);
     formData.append("url", imgUrl);
     formData.append("originalname", ".jpg");
@@ -160,13 +182,6 @@ function Mint(props) {
           onChange={onChangeName}
           type="text"
           placeholder="NFT Name"
-        />
-        <div className="input_name">Price</div>
-        <input
-          className="create_input"
-          onChange={onChangePrice}
-          type="text"
-          placeholder="Price"
         />
         <div className="input_name">Webtoon</div>
         <select className="create_input" onChange={onChangeTheme} value={theme}>
