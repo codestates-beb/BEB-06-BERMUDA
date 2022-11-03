@@ -1,8 +1,5 @@
 import mysql from 'mysql';
 import dotenv from "dotenv";
-import Web3 from "web3"
-
-const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 
 dotenv.config();
 
@@ -15,19 +12,18 @@ var connection = mysql.createConnection({
 // DB CONNECT
 connection.connect();
 
-const Login = (data) => {
+const Login = async (data) => {
 
 	connection.query("USE webtoon", function (error, results, fields) {
 		if (error) throw error;
 	});
 
-	connection.query(`SELECT * FROM user WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
+  await connection.query(`SELECT * FROM user WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
 		if (error) throw error;
-		if (results.length === 0 || results[0].password !== data.password){
-			return false;
+		if (results.length !== 0 || results[0].password === data.password){
+			return results;
 		}
   })
-	return true;
+  
 }
-
 export default Login;

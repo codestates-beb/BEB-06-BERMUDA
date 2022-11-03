@@ -1,9 +1,9 @@
 import express from "express";
-
 import cors from "cors";
 import GetSignUpData from "../services/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
+import Vote from "../services/Vote.js";
 // import dotenv from "dotenv";
 
 const app = express();
@@ -41,16 +41,23 @@ app.post("/user/join", function (req, res) {
   // const userInfo = req.body.signUp;
   // GetSignUpData(userInfo);
   const test = {
-    user_id: "test24",
+    user_id: "test3",
     password: "demon",
-    nickname: "test24"
+    nickname: "test3"
   };
   GetSignUpData(test);
 });
 
 app.post("/user/login", function (req, res) {
-  const userInfo = req.body.signIn;
+  const userInfo = req.body;
   res.send(Login(userInfo));
+});
+
+app.get("/user/vote", function (req, res) {
+  const test = {
+    user_id: "test2"
+  };
+  Vote(test);
 });
 
 app.listen(port, () => {
