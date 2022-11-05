@@ -15,19 +15,19 @@ var connection = mysql.createConnection({
 // DB CONNECT
 connection.connect();
 
-const Login = (data) => {
+const Login = (data ,res) => {
 
 	connection.query("USE webtoon", function (error, results, fields) {
 		if (error) throw error;
 	});
 
-	connection.query(`SELECT * FROM user WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
+	connection.query(` SELECT A.* , B.token_id , B.img_url FROM user as A INNER JOIN nft as B  ON A.id = B.user_id where A.user_id = "${data.user_id}" `, function(error, results, fields) {
 		if (error) throw error;
 		if (results.length === 0 || results[0].password !== data.password){
-			return false;
+			res.status(500).send("fail");
 		}
+		res.status(200).send(results);
   })
-	return true;
 }
 
 export default Login;

@@ -44,7 +44,7 @@ app.post("/user/join", function (req, res) {
 
 app.post("/user/login", function (req, res) {
   const userInfo = req.body.signIn;
-  res.send(Login(userInfo));
+  Login(userInfo,res);
 });
 
 app.post('/nft/create', SaveNftData);

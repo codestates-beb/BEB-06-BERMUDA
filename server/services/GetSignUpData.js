@@ -27,7 +27,13 @@ const GetSignUpData =  (data ,res) => {
     if (error) throw error;
   });
   connection.query(
-    "CREATE TABLE if not exists user(user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, created_at timestamp) ",
+    "CREATE TABLE if not exists user(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, created_at timestamp) ",
+    function (error, results, fields) {
+      if (error) throw error;
+  });
+
+  connection.query(
+    "CREATE TABLE if not exists nft(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id int, token_id int,img_url varchar(255))",
     function (error, results, fields) {
       if (error) throw error;
   });

@@ -653,10 +653,11 @@ background-size: 218px 120px;
 }
 
 .sign_up_page_text {
-  text-align: center;
   color: #ccc;
-  margin-top: 19px;
   font-size: 10px;
+  width: 124px;
+  margin: 0 auto;
+  margin-top: 19px;
 }
 
 

@@ -33,28 +33,49 @@ function SiginIn(props) {
         password: password,
       };
 
-        // axios.post('http://localhost:8080/user/login', {signIn})
-        // .then(function(res){
-        //   props.setUserData(res.data);
-        //   props.setLogin(true);
-        //   alert("로그인 성공!");
-        //   navigate("/");
-        // }).catch(function (error) {
-        //   console.log(error);
-        // });
+        axios.post('http://localhost:8080/user/login', {signIn})
+        .then(function(res){
+          let data = res.data;
+          let nft = [];
 
-        const data = {
-          nickname: "알파카",
-          address : "0x60A1764c74eaCa63344D2235Ee5AC1fA0D59Cd9D",
-          eth_amount : "1",
-          token_bet : "20",
-          nft: []
-        }
+          for ( let i = 0; i < data.length; i++ ) {
+            let resultdata = {};
+            resultdata["token_id"] = data[i].token_id;
+            resultdata["img_url"] = data[i].img_url;
+            nft.push(resultdata);
+          }
 
-        props.setUserData(data);
-        props.setLogin(true);
-        navigate("/");
-        alert("로그인 성공!");
+          let result = {};
+          result["address"] = data[0].address;
+          result["eth_amount"] = data[0].eth_amount;
+          result["nickname"] = data[0].nickname;
+          result["token_bet"] = data[0].token_bet;
+          result["user_id"] = data[0].user_id;
+          result["id"] = data[0].id;
+          // result["private_key"] = data[0].private_key;  
+          result["token_amount"] = data[0].token_amount;
+          result["nft"] = nft;
+          
+          props.setUserData(result);
+          props.setLogin(true);
+          alert("로그인 성공!");
+          navigate("/");
+        }).catch(function (error) {
+          alert("로그인 실패");
+        });
+
+        // const data = {
+        //   nickname: "알파카",
+        //   address : "0x60A1764c74eaCa63344D2235Ee5AC1fA0D59Cd9D",
+        //   eth_amount : "1",
+        //   token_bet : "20",
+        //   nft: []
+        // }
+
+        // props.setUserData(data);
+        // props.setLogin(true);
+        // navigate("/");
+        // alert("로그인 성공!");
 
     }
 
