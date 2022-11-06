@@ -2,10 +2,10 @@ import mysql from 'mysql';
 import dotenv from "dotenv";
 import SendToken from './SendToken.js';
 import Web3 from "web3"
-import Abi from '/home/seominseok/바탕화면/project/incentive-community/BEB-06-SECOND-06/server/services/Abi.js';
+import Abi from './Abi.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
-const contractHx = process.env.SERVER_TRANSACTION_HX; // 고정
+const contractHx = process.env.ERC20_CONTRACT_HX; // 고정
 const contract = new web3.eth.Contract(Abi, contractHx); // abi : 복사해서 그대로 // 고정
 const accounts = await web3.eth.getAccounts();
 
@@ -42,7 +42,6 @@ const Vote = async (data) => {
     .then(
       req => connection.query(`UPDATE user SET isVoted=0, token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
       if (error) throw error;
-      console.log(`20 토큰 전송완료. 현재 보유 토큰 수는 ${req} 입니다.`)
     })), 30)
 
     // 트랜잭션 컨펌 속도보다 저장속도가 빨라, 토큰수량 업데이트 전 값이 DB로 들어가버림. 
