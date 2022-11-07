@@ -11,6 +11,7 @@ function RoundOf2(props) {
                 <div className="final_img" ></div>
                 <div>
                   <div className="league_button" >투표하기</div>
+                  <input  className="bet_input"  />
                   <div className="league_button" >배팅하기</div>
                 </div>
               </div>
@@ -21,6 +22,7 @@ function RoundOf2(props) {
                  <div className="final_img f2" ></div>
                  <div>
                   <div className="league_button" >투표하기</div>
+                  <input  className="bet_input" />
                   <div className="league_button" >배팅하기</div>
                 </div>
               </div>
