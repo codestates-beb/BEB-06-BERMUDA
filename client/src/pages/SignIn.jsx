@@ -2,11 +2,13 @@ import { Fragment , useState } from "react";
 import Signup from "../components/Signup";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SiginIn(props) {
     const [ signinOepn , setSigninOepn ] =  useState(false);
-    const [ id ,setId ] = useState();
-    const [ password ,setPassword ] = useState();
+    const [ id ,setId ] = useState("");
+    const [ password ,setPassword ] = useState("");
 
     const onChangeId = (e) => {
       setId(e.target.value);
@@ -25,6 +27,8 @@ function SiginIn(props) {
     }
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const onSignIn = () => {
 
@@ -55,27 +59,13 @@ function SiginIn(props) {
           // result["private_key"] = data[0].private_key;  
           result["token_amount"] = data[0].token_amount;
           result["nft"] = nft;
-          
-          props.setUserData(result);
-          props.setLogin(true);
+          dispatch({  type: "add" ,  "data" : result  });
+          dispatch({  type: "login"  });
           alert("로그인 성공!");
           navigate("/");
         }).catch(function (error) {
           alert("로그인 실패");
         });
-
-        // const data = {
-        //   nickname: "알파카",
-        //   address : "0x60A1764c74eaCa63344D2235Ee5AC1fA0D59Cd9D",
-        //   eth_amount : "1",
-        //   token_bet : "20",
-        //   nft: []
-        // }
-
-        // props.setUserData(data);
-        // props.setLogin(true);
-        // navigate("/");
-        // alert("로그인 성공!");
 
     }
 
