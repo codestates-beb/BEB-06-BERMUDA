@@ -5,19 +5,25 @@ import RoundOf8 from "./league_sub/RoundOf8";
 import RoundOf4 from "./league_sub/RoundOf4";
 import RoundOf2 from "./league_sub/RoundOf2";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function League() {
+
+  const navigate = useNavigate();
+
     const [tournament, setTournament] = useState(17);
     const [days, setDays] = useState();
     const [hours, setHours] = useState();
     const [minutes, setMinutes] = useState();
     const [seconds, setSeconds] = useState();
+    const [betEnd , setBetEnd] = useState(false);
 
 
     const onChangeValue = (e) => {
       let value = e.currentTarget.attributes.value.value;
       setTournament(value);
     }
+
 
 
     function CountDownTimer() {
@@ -39,15 +45,20 @@ function League() {
         setHours(hours);
         setMinutes(minutes);
         setSeconds(seconds);
-        setInterval(() => {
-          CountDownTimer();
-        }, 1000);
+    }
+
+    const onBetEnd = () => {
+      setBetEnd(true);
+      navigate("/myPage");
     }
 
 
 
     useEffect(() => {
-      CountDownTimer();
+       let timer = setInterval(() => CountDownTimer()
+       )
+
+       return () => clearInterval(timer);
     });
   
 
@@ -66,10 +77,24 @@ function League() {
             <div className="arrow_button" onClick={onChangeValue} value={2} > 결승전 보러가기 </div>
           </Fragment>
         ) : (
-          <div className="end_text_box" >
-            <div className="end_text" >결승전 투표 마감 까지   </div>
-            <div className="end_text2" > {days}일  : {hours}시 : {minutes}분 : {seconds}초</div>
-          </div>
+          <Fragment>
+            {betEnd  == false ? ( 
+              <div className="end_text_box" >
+                <div className="end_text" >결승전 투표 마감 까지   </div>
+                <div className="end_text2" > {days}일  : {hours}시 : {minutes}분 : {seconds}초  <div className="bet_end_button" onClick={onBetEnd}  >투표 종료</div></div>  
+              </div>
+            ) : (
+              <Fragment>
+                <div className="last_arrow_text" >투표가 모두 끝난 페이지 입니다</div>
+                <div className="arrow_icon" >
+                  <span className="material-symbols-outlined">
+                    double_arrow
+                  </span>
+                </div>
+                <div className="arrow_button" onClick={onChangeValue} value={2} > 내 코인 확인하기 </div>
+              </Fragment>
+            )}
+          </Fragment>
         )}
 
         <div className="league_menu" >

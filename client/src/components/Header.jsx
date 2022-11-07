@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { onChangeSection } from '../reducers/reducer';
 
@@ -9,6 +9,14 @@ function Header(props) {
   const dispatch = useDispatch();
   const section = useSelector( (state) => state.section.section );
   const login = useSelector( (state) => state.login.login );
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    navigate("/");
+    props.logOut();
+  }
+
+     
 
   return (
     <div className="Header">
@@ -27,7 +35,7 @@ function Header(props) {
               <Link to = "/mypage">
                <div className={"menu_text"  + (section == "mypage" ? " on" : "" )}   onClick={ () =>  dispatch( onChangeSection( "mypage" ) )} >마이페이지</div> 
               </Link>
-              <div className={"menu_text"} onClick={props.logOut} > 로그아웃 </div>
+              <div className={"menu_text"} onClick={logOut} > 로그아웃 </div>
             </Fragment>
           )}
 
