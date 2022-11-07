@@ -25,6 +25,7 @@ function MyPage(props) {
             <div className="eth_box" > <div className="eth_img" ></div> {userData.eth_amount} eth</div>
             <div className="eth_box on" > aa Token : {userData.token_amount}</div>
           </div>
+          <div className="faucet_button" > faucet 받기 </div>
         </div>
 
 

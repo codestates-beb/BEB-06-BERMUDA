@@ -11,11 +11,13 @@ import { useDispatch, useSelector } from 'react-redux'; // useDispatch 리덕스
 
 function App() {
 
+
   const dispatch = useDispatch();
 
   const logOut = () => {
     dispatch({  type: "logout" });
     dispatch({  type: "delete" });
+
   }
 
   return (
