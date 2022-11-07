@@ -45,8 +45,8 @@ app.post("/user/join", function (req, res) {
 });
 
 app.post("/user/login", function (req, res) {
-  const userInfo = req.body;
-  res.send(Login(userInfo));
+  const userInfo = req.body.signIn;
+  Login(userInfo,res);
 });
 
 app.get("/user/vote", function (req, res) {  // 로그인 된 아이디를 받아야 함 

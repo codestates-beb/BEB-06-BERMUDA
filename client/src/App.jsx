@@ -7,38 +7,32 @@ import MyPage from './pages/MyPage.jsx'
 import Mint from './pages/Mint.jsx'
 import SignIn from './pages/SignIn.jsx'
 import League from './pages/League.jsx'
-
+import { useDispatch, useSelector } from 'react-redux'; // useDispatch 리덕스 함수 사용 , useSelector state 사용
 
 function App() {
-  const [section, setSection] = useState("main");
-  const [ login , setLogin ] = useState(false);
-  const [userData , setUserData] = useState({});
 
-
-  const onClickSection = (e) =>{ 
-    let value = e.currentTarget.attributes.value.value;
-    setSection(value);
-  }
+  const dispatch = useDispatch();
 
   const logOut = () => {
-    setLogin(false);
-    setUserData({});
+    dispatch({  type: "logout" });
+    dispatch({  type: "delete" });
   }
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header  onClickSection={onClickSection}  section={section} login={login} logOut={logOut}   />
+      <BrowserRouter >
+        <Header  logOut={logOut}   />
         <Routes >
           <Route path='/' element={<MainPage />} />
-          <Route path='/mypage' element={<MyPage section={section} userData={userData} />}  />
+          <Route path='/mypage' element={<MyPage  />}  />
           <Route path='/mint' element={<Mint />} />
-          <Route path='/signin' element={<SignIn setLogin={setLogin} setUserData={setUserData} />}/>
+          <Route path='/signin' element={<SignIn />}/>
           <Route path='/League' element={<League />}/>
         </Routes>
       </BrowserRouter> 
     </div>
   );
 }
+
 
 export default App;
