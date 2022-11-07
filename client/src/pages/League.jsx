@@ -6,60 +6,69 @@ import RoundOf4 from "./league_sub/RoundOf4";
 import RoundOf2 from "./league_sub/RoundOf2";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import axios from 'axios';
 
 function League() {
 
+  // redux로 현재 로그인 된 유저 정보를 가져온다. 
+  const userData = useSelector( (state) => state.userData.userData );
+
   const navigate = useNavigate();
-
-    const [tournament, setTournament] = useState(17);
-    const [days, setDays] = useState();
-    const [hours, setHours] = useState();
-    const [minutes, setMinutes] = useState();
-    const [seconds, setSeconds] = useState();
-    const [betEnd , setBetEnd] = useState(false);
-
-
-    const onChangeValue = (e) => {
-      let value = e.currentTarget.attributes.value.value;
-      setTournament(value);
-    }
+  const [tournament, setTournament] = useState(17);
+  const [days, setDays] = useState();
+  const [hours, setHours] = useState();
+  const [minutes, setMinutes] = useState();
+  const [seconds, setSeconds] = useState();
+  const [betEnd , setBetEnd] = useState(false);
 
 
+  const onChangeValue = (e) => {
+    let value = e.currentTarget.attributes.value.value;
+    setTournament(value);
+  }
 
-    function CountDownTimer() {
-        var end = new Date('11/09/2022');
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var now = new Date();
-        var distance = end - now;
-     
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
+  function CountDownTimer() {
+    var end = new Date('11/09/2022');
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var now = new Date();
+    var distance = end - now;
+  
+    var days = Math.floor(distance / _day);
+    var hours = Math.floor((distance % _day) / _hour);
+    var minutes = Math.floor((distance % _hour) / _minute);
+    var seconds = Math.floor((distance % _minute) / _second);
 
+    setDays(days);
+    setHours(hours);
+    setMinutes(minutes);
+    setSeconds(seconds);
+  }
 
-        setDays(days);
-        setHours(hours);
-        setMinutes(minutes);
-        setSeconds(seconds);
-    }
-
-    const onBetEnd = () => {
-      setBetEnd(true);
-      navigate("/myPage");
-    }
-
-
-
-    useEffect(() => {
-       let timer = setInterval(() => CountDownTimer()
-       )
-
-       return () => clearInterval(timer);
+  const winner = () => {
+    axios.post('http://localhost:8080/user/win', {user_id: userData.user_id})
+    .then(function(res){
+      alert("선택하신 웹툰이 승리하였습니다.")
+    }).catch(function (error) {
+      alert("선택하신 웹툰이 패배하였습니다.");
     });
+  }
+
+  const onBetEnd = () => {
+    setBetEnd(true);
+    navigate("/myPage");
+    winner();
+  }
+
+  useEffect(() => {
+      let timer = setInterval(() => CountDownTimer()
+      )
+
+      return () => clearInterval(timer);
+  });
   
 
     return (

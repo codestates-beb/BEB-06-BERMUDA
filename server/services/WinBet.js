@@ -35,9 +35,9 @@ const WinBet = async (data, res) => {
 
     if (error) throw error;
 
-    const doubleToken = parseInt(data.token_bet)*2
+    const doubleToken = parseInt(results[0].token_bet)*2
 
-    SendToken(results[0].address, 200)
+    SendToken(results[0].address, doubleToken)
     setTimeout(() => getTOKENBalanceOf(results[0].address)
     .then(
       req => connection.query(`UPDATE user SET token_bet=0, token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
