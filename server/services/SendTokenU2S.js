@@ -12,8 +12,6 @@ const accounts = await web3.eth.getAccounts();
 
 const SendTokenU2S = async (fromKey, to, amount) => {
 
-	console.log("bet:", amount)
-
   var transactionData = contract.methods.transfer(to, amount).encodeABI(); //Create the data for token transaction.
   var rawTransaction = {"to": contractHx, "gas": 100000, "data": transactionData }; 
 
