@@ -29,7 +29,7 @@ function League() {
   }
 
   function CountDownTimer() {
-    var end = new Date('11/09/2022');
+    var end = new Date('11/11/2022');
     var _second = 1000;
     var _minute = _second * 60;
     var _hour = _minute * 60;
