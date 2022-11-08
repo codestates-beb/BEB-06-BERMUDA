@@ -52,7 +52,7 @@ function MyPage(props) {
               {userData.nft.map((vlaue,key) => (
                 <div className="nft_box" key={key} >
                   <img className="nft_img"  src={vlaue.img_url} />
-                  <div className="nft_name" > {vlaue.nft_id} </div>
+                  <div className="nft_id" > {vlaue.nft_id} </div>
                 </div>
                 ))
               }
