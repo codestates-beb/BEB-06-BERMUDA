@@ -55,9 +55,12 @@ const WinBet = async (data, res) => {
 
       if(parseInt(winner)===results[0].isVoted){
 
+
+
         const doubleToken = parseInt(results[0].token_bet)*1.8
-    
+        console.log("@@@@@@@@@@@@@@@@@")
         SendToken(results[0].address, doubleToken)
+        console.log("@@@@@@@@@@@@@@@@@")
         setTimeout(() => getTOKENBalanceOf(results[0].address)
         .then(
           req => connection.query(`UPDATE user SET token_bet=0, token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {

@@ -29,7 +29,7 @@ function League() {
   }
 
   function CountDownTimer() {
-    var end = new Date('11/11/2022');
+    var end = new Date('11/9/2022');
     var _second = 1000;
     var _minute = _second * 60;
     var _hour = _minute * 60;
@@ -46,6 +46,13 @@ function League() {
     setHours(hours);
     setMinutes(minutes);
     setSeconds(seconds);
+
+    if(tournament === "2" && days===0 && hours===0 && minutes===0 && seconds===0){
+      if(betEnd===false){
+        setBetEnd(true);
+        winner()
+      }
+    }
   }
 
   const winner = () => {
@@ -91,7 +98,7 @@ function League() {
             {betEnd  == false ? ( 
               <div className="end_text_box" >
                 <div className="end_text" >결승전 투표 마감 까지   </div>
-                <div className="end_text2" > {days}일  : {hours}시 : {minutes}분 : {seconds}초  <div className="bet_end_button" onClick={onBetEnd}  >투표 종료</div></div>  
+                <div className="end_text2" > {days}일  : {hours}시 : {minutes}분 : {seconds}초  <div className="bet_end_button" onClick={onBetEnd}  >투표 강제 종료</div></div>  
               </div>
             ) : (
               <Fragment>
