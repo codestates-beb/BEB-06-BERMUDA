@@ -26,7 +26,7 @@ const Faucet = async (req, res) => {
 
   // Client 에서  user 지갑 주소 받기
   const data = req.body;
-  const userAddress = data.address;
+  const userAddress = data.userAddress;
   const faucetAddress = process.env.FAUCET_ADDRESS;
   const faucetPK = process.env.FAUCET_PRIVATE_KEY;
   const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
