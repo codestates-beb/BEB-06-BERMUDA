@@ -27,7 +27,7 @@ function RoundOf2(props) {
     }
     axios.post('http://localhost:8080/user/vote', data)
     .then(function(res){
-      alert("투표 완료! 20 토큰이 부여되었습니다.")
+      alert("투표 완료! \n20 토큰이 부여되었습니다.")
     }).catch(function (error) {
       alert("투표는 한번만 가능합니다");
     });
@@ -40,7 +40,7 @@ function RoundOf2(props) {
     }
     axios.post('http://localhost:8080/user/vote', data)
     .then(function(res){
-      alert("투표 완료! 20 토큰이 부여되었습니다.")
+      alert("투표 완료! \n20 토큰이 부여되었습니다.")
     }).catch(function (error) {
       alert("투표는 한번만 가능합니다");
     });

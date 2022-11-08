@@ -8,6 +8,7 @@ import Bet from "../services/Bet.js";
 import WinBet from "../services/WinBet.js";
 import SaveNftData from "../services/SaveNftData.js";
 import GetNftData from "../services/GetNftData.js"
+import CreateDatabase from "../services/CreateDatabase.js";
 import { getComment , saveComment } from "../services/Comment.js"
 // import dotenv from "dotenv";
 
@@ -27,6 +28,8 @@ async function getAccounts() {
       return e;
   }
 }
+
+CreateDatabase();
 
 app.use(express.json());
 // app.listen(4000);
@@ -59,12 +62,11 @@ app.post("/user/bet", function (req, res){  // 로그인 된 아이디와 얼마
 }) 
 
 app.post("/user/win", function (req, res){  // 로그인 된 아이디를 받아야함 // 이겼을때만 호출할 것
-  WinBet(req.body);
+  WinBet(req.body, res);
 }) 
 
-
 app.get("/comment/data" , function (req,res) {
-    getComment(res);
+  getComment(res);
 });
 
 app.post("/comment/save" , function (req,res) {
