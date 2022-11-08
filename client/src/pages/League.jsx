@@ -51,9 +51,10 @@ function League() {
   const winner = () => {
     axios.post('http://localhost:8080/user/win', {user_id: userData.user_id})
     .then(function(res){
-      alert("선택하신 웹툰이 승리하였습니다.")
+      alert(res.data);
     }).catch(function (error) {
-      alert("선택하신 웹툰이 패배하였습니다.");
+      console.log(error)
+      alert(error.response.data);
     });
   }
 

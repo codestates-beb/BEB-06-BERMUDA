@@ -62,12 +62,11 @@ app.post("/user/bet", function (req, res){  // 로그인 된 아이디와 얼마
 }) 
 
 app.post("/user/win", function (req, res){  // 로그인 된 아이디를 받아야함 // 이겼을때만 호출할 것
-  WinBet(req.body);
+  WinBet(req.body, res);
 }) 
 
-
 app.get("/comment/data" , function (req,res) {
-    getComment(res);
+  getComment(res);
 });
 
 app.post("/comment/save" , function (req,res) {

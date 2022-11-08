@@ -23,7 +23,7 @@ const CreateDatabase = () => {
 
   //@@@@@@@@ 테이블 생성 @@@@@@@@
   connection.query(
-    "CREATE TABLE if not exists nft(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), token_id varchar(255),img_url varchar(255), wallet_id varchar(255))",
+    "CREATE TABLE if not exists nft(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), nft_name varchar(255),img_url varchar(255), wallet_id varchar(255))",
     function (error, results, fields) {
       if (error) throw error;
       // console.log(results);
