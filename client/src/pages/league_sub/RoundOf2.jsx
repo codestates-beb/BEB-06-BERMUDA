@@ -42,6 +42,7 @@ function RoundOf2(props) {
       
       <Fragment >
          { props.tournament == 2 && (
+          <Fragment>
             <div className={"league_box" +  (props.tournament == 2 ? " on" : "" )   } >
 
               <div className="final_img_box" >
@@ -63,10 +64,18 @@ function RoundOf2(props) {
                   <div className="league_button" onClick={bet}>배팅하기</div>
                 </div>
               </div>
-              
-
-              
             </div>
+
+            <div className="comment_box">
+              <div className="comment_title" > 실시간 채팅  
+                 <span class="material-symbols-rounded">
+                   arrow_drop_down
+                 </span>
+              </div>
+              <div className="comment_text" ></div>
+              <div className="comment_input_push" ></div>
+            </div>
+          </Fragment>
          )}
       </Fragment>
     );

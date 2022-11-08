@@ -87,13 +87,7 @@ const GetSignUpDataEnd = (data,res) => {
       if (error) throw error;
     }
   );
-  connection.query( 
-    `INSERT INTO nft (user_id, token_id, img_url, wallet_id) 
-    VALUES ("${data.user_id}", NULL, NULL, "${wallet.address}")`,
-    function (error, results, fields) {
-      if (error) throw error;
-    }
-  );
+
   res.status(200).send('complete');
   connection.end();
  }

@@ -830,7 +830,7 @@ background-size: 218px 120px;
 .league_title {
   display: inline-block;
   margin-top: 150px;
-  margin-left: 100px;
+  margin-left: 70px;
   font-weight: 600;
   font-size: 40px;
   color: rgb(4, 17, 29);
@@ -838,10 +838,10 @@ background-size: 218px 120px;
 }
 
 .league_menu {
-  width: 1400px;
+  width: 1380px;
   display: inline-block;
   margin-top: 100px;
-  margin-left: 100px;
+  margin-left: 70px;
   border-bottom: 1px solid #987878;
 }
 
@@ -866,9 +866,9 @@ background-size: 218px 120px;
 }
 
 .league_box {
-  width: 1500px;
+  width: 1402px;
   display: inline-block;
-  margin-left: 100px;
+  margin-left: 70px;
   position: relative;
 }
 
@@ -967,7 +967,7 @@ background-size: 218px 120px;
 
 .final_img_box {
   display: inline-block;
-  width: 700px;
+  width: 690px;
   margin-top: 50px;
   text-align: center;
 }
@@ -1251,4 +1251,40 @@ img.nft_img {
   margin-left: 10px;
   box-shadow: 1px 2px 3px #ccc;
   cursor: pointer;
+  vertical-align: super;
+}
+
+.comment_box {
+  width: 400px;
+  height: 580px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.comment_title span {
+  vertical-align: middle;
+}
+
+.comment_title {
+  border-bottom: 1px solid #b3adad;
+  padding-left: 10px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.comment_box {
+  width: 400px;
+  height: 580px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #b3adad;
+  border-radius: 10px;
+}
+
+.comment_text {
+  height: 500px;
+  width: 100%;
+  display: inline-block;
+  overflow: auto;
+  border-bottom: 1px solid #b3adad;
 }
