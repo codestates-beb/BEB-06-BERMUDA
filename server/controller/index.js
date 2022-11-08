@@ -9,7 +9,7 @@ import WinBet from "../services/WinBet.js";
 import SaveNftData from "../services/SaveNftData.js";
 import GetNftData from "../services/GetNftData.js"
 import CreateDatabase from "../services/CreateDatabase.js";
-
+import { getComment , saveComment } from "../services/Comment.js"
 // import dotenv from "dotenv";
 
 const app = express();
@@ -71,7 +71,7 @@ app.get("/comment/data" , function (req,res) {
 });
 
 app.post("/comment/save" , function (req,res) {
-  const userData = req.body.userData;
+  const userData = req.body;
   saveComment(userData,res);
 })
 

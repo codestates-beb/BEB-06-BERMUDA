@@ -1,10 +1,12 @@
 import { Fragment, React, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import { useEffect } from "react";
 
 function RoundOf2(props) {
-
-  // 배팅금액 첫번째 텍스트 박스
+  const [commentData, setCommentData] = useState([]);
+  const [comment, setComment] = useState("");
+   // 배팅금액 첫번째 텍스트 박스
   const [betFirst, setBetFirst] = useState('0')
   // 배팅금액 두번째 텍스트 박스
   const [betSecond, setBetSecond] = useState('0')
@@ -72,6 +74,39 @@ function RoundOf2(props) {
     });
   }
 
+  const getComment = () => {
+    axios.get('http://localhost:8080/comment/data')
+    .then(function(res){
+      setCommentData(res.data);
+    })
+  }
+
+  const pushComment = () => {
+
+    if (!userData) {
+      alert("로그인을 먼저 해주세요!") 
+    }
+    
+    const data = {
+      user_id: userData.user_id,
+      comment: comment
+    }
+
+    axios.post('http://localhost:8080/comment/save', data)
+    .then(function(res){
+      setCommentData(res.data);
+      setComment("");
+    })
+  }
+
+   const onChangeComment = (e) =>{  
+    setComment(e.target.value);
+  }
+
+  useEffect(() => {
+    getComment();
+  },[]);
+
     return (
       
       <Fragment >
@@ -102,12 +137,22 @@ function RoundOf2(props) {
 
             <div className="comment_box">
               <div className="comment_title" > 실시간 채팅  
-                 <span class="material-symbols-rounded">
+                 <span className="material-symbols-rounded">
                    arrow_drop_down
                  </span>
               </div>
-              <div className="comment_text" ></div>
-              <div className="comment_input_push" ></div>
+              <div className="comment_text" >
+                { commentData.length > 0  && commentData.map((vlaue,key) => (
+                  <div className="comment_one" key={key} >
+                    <div className="comment_img" ></div>
+                    {vlaue.user_id} : {vlaue.comment}
+                  </div>
+                ))}
+              </div>
+              <div className="comment_input_push" >  
+                <input className="comment_input" onChange={onChangeComment} value={comment} placeholder="메세지를 입력해 주세요" ></input>
+                <div className="comment_button" onClick={pushComment} >보내기</div>
+              </div>
             </div>
           </Fragment>
          )}
