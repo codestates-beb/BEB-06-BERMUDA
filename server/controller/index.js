@@ -51,17 +51,15 @@ app.post("/user/login", function (req, res) {
 
 app.post("/user/vote", function (req, res) {  // 로그인 된 아이디를 받아야 함 
   Vote(req.body, res);
-}); // 투표가 끝난 뒤 최신 DB 전송 
+}); 
 
 app.post("/user/bet", function (req, res){  // 로그인 된 아이디와 얼마나 배팅할건지를 받아야함
-  const data = req.body;
-  Bet(data, res);
-}) // 배팅이 끝난 뒤 최신 DB 전송
+  Bet(req.body, res);
+}) 
 
 app.post("/user/win", function (req, res){  // 로그인 된 아이디를 받아야함 // 이겼을때만 호출할 것
-  const data = req.body;
-  WinBet(data);
-}) // 배팅이 끝난 뒤 최신 DB 전송
+  WinBet(req.body);
+}) 
 
 app.post('/nft/create', SaveNftData);
 app.get('/nft/:user_id', GetNftData);

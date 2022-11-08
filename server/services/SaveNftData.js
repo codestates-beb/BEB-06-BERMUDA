@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
   connection.connect((err)=>{
     if(err)
     {
-      console.log(err);
+     console.log(err);
     } else {
       console.log("connected !");
     }
@@ -33,12 +33,12 @@ var connection = mysql.createConnection({
       // console.log(results)
     });
     connection.query(
-      "CREATE TABLE if not exists nftlist(user_id varchar(255), token_id varchar(255), img_id varchar(255))",
+      "CREATE TABLE if not exists nft(user_id varchar(255), token_id varchar(255), img_id varchar(255))",
       function (error, results, fields) {
         if (error) throw error;
         // console.log(results);
     })
-     // ###### 이미 DB상에 USER_ID 또는 NICKNAME이 존재할때 에러 던지기 ########
+     // ###### 이미 DB상에 USER_ID 또는 NICKNAME이  존재할때 에러 던지기 ########
     // connection.query(`SELECT * FROM user WHERE token_id = "${req.body.token_id}"`, function(error, results, fields) {
     //   if (error) throw error;
     //   if (results.length !== 0){
@@ -48,7 +48,7 @@ var connection = mysql.createConnection({
     // });
     
     connection.query( 
-      `INSERT INTO nftlist(user_id, token_id, img_id) 
+      `INSERT INTO nft(user_id, token_id, img_id) 
       VALUES ("${req.body.user_id}", "${req.body.token_id}", "${req.body.img_id}")`,
       function (error, results, fields) {
         if (error) throw error;

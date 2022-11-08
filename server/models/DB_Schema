@@ -6,6 +6,7 @@ CREATE TABLE `user` (
   `private_key` varchar(255),
   `token_amount` int,
   `eth_amount` int,
+  `isVoted` boolean,
   `created_at` timestamp
 );
 
@@ -14,5 +15,12 @@ CREATE TABLE `nft` (
   `token_id` int,
   `tx_hash` varchar(255)
 );
+
+CREATE TABLE `vote` (
+  `num_one` int,
+  `num_two` int
+);
+
+
 
 ALTER TABLE `nft` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
