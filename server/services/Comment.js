@@ -27,8 +27,8 @@ const getComment = (res) => {
     
 
 	connection.query("select * from webtoon.comment", function(error, results, fields) {
-		if (error) throw error;
-
+		if (error)  {throw error;
+    }
 		res.status(200).send(results);
   })
 }
@@ -41,8 +41,8 @@ const saveComment = (data ,res) => {
     
 
 	connection.query(`insert into comment ( user_id , comment ) VALUES  ( "${data.user_id}" ,  "${data.comment}" )`, function(error, results, fields) {
-		if (error) throw error;
-
+		if (error)  {throw error;
+    }
         getComment(res);
     })
 }
