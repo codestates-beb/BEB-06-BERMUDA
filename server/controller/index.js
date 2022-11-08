@@ -6,8 +6,9 @@ import Web3 from "web3"
 import Vote from "../services/Vote.js";
 import Bet from "../services/Bet.js";
 import WinBet from "../services/WinBet.js";
-import SaveNftData from "../services/SaveNftData.js";
+import Faucet from "../services/Faucet.js";
 import GetNftData from "../services/GetNftData.js"
+import MintingNft from "../services/Minting.js";
 import CreateDatabase from "../services/CreateDatabase.js";
 import { getComment , saveComment } from "../services/Comment.js"
 // import dotenv from "dotenv";
@@ -75,8 +76,10 @@ app.post("/comment/save" , function (req,res) {
 })
 
 
-app.post('/nft/create', SaveNftData);
-app.get('/nft/:user_id', GetNftData);
+app.post("/nft/mint", MintingNft);
+app.get("/nft/:user_id", GetNftData);
+
+app.post("/faucet", Faucet);
 
 app.listen(port, () => {
   console.log('Ganache Local Network Connected : http://localhost:8080/');

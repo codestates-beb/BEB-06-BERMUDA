@@ -1,9 +1,20 @@
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
+import axios from 'axios';
 
 function MyPage(props) {
 
   const userData = useSelector( (state) => state.userData.userData );
+  const userAddress = userData.address;
+  console.log(userAddress);
+  const clickFaucet = () => {
+    axios.post("http://localhost:8080/faucet", {userAddress})
+    .then(function(res){
+      alert(res.data);
+      console.log(res);
+    })
+  }
+  
 
     return (
       <Fragment>
@@ -25,7 +36,7 @@ function MyPage(props) {
             <div className="eth_box" > <div className="eth_img" ></div> {userData.eth_amount} eth</div>
             <div className="eth_box on" > aa Token : {userData.token_amount}</div>
           </div>
-          <div className="faucet_button" > faucet 받기 </div>
+          <div className="faucet_button" onClick={clickFaucet}> faucet 받기 </div>
         </div>
 
 
@@ -41,7 +52,7 @@ function MyPage(props) {
               {userData.nft.map((vlaue,key) => (
                 <div className="nft_box" key={key} >
                   <img className="nft_img"  src={vlaue.img_url} />
-                  <div className="nft_name" > {vlaue.token_id} </div>
+                  <div className="nft_name" > {vlaue.nft_id} </div>
                 </div>
                 ))
               }

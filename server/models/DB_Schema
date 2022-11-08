@@ -12,7 +12,9 @@ CREATE TABLE `user` (
 
 CREATE TABLE `nft` (
   `user_id` int,
-  `token_id` int,
+  `nft_id` varchar,
+  `img_url`varchar,
+  `wallet_id`varchar,
   `tx_hash` varchar(255)
 );
 
