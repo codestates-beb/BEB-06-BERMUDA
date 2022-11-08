@@ -97,7 +97,10 @@ const mint = async (results) => {
           console.log('HelloWorldaa');
           console.log("4");
           const signedTxMint = await web3.eth.accounts.signTransaction(tx721, serverKey)
-          .then((signedTxMint) => web3.eth.sendSignedTransaction(signedTxMint.rawTransaction));
+          .then((signedTxMint) => web3.eth.sendSignedTransaction(signedTxMint.rawTransaction))
+          .then(req => {
+            return res.status(200).send("민팅 성공");
+          })
   
             console.log(signedTxMint);
             console.log('HelloWorld');
