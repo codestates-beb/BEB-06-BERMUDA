@@ -44,7 +44,7 @@ const GetSignUpData = (data, res) => {
       // console.log(results);
   });
   connection.query(
-    "CREATE TABLE if not exists user(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, isVoted boolean, created_at timestamp) ",
+    "CREATE TABLE if not exists user(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, isVoted int, created_at timestamp) ",
     function (error, results, fields) {
       if (error) throw error;
   });
@@ -87,7 +87,6 @@ const GetSignUpDataEnd = (data,res) => {
       if (error) throw error;
     }
   );
-
   res.status(200).send('complete');
   connection.end();
  }

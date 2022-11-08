@@ -22,6 +22,7 @@ connection.connect();
 
 const Bet = async (data, res) => {
 
+
   // ###### 토큰 잔액 확인 함수 ######
   async function getTOKENBalanceOf(address){
     return await contract.methods.balanceOf(address).call();                        
@@ -35,25 +36,31 @@ const Bet = async (data, res) => {
 
 		if (error) throw error;
 
+    if(data.choice === `${results[0].isVoted}`){ 
 
-    if(results[0].token_amount >= data.token_bet){
-      SendTokenU2S(results[0].private_key, process.env.SERVER_ADDRESS, data.token_bet)
-      setTimeout(() => getTOKENBalanceOf(results[0].address)
-      .then(
-        req => { 
-          const total_betted = parseInt(results[0].token_bet) + parseInt(data.token_bet);
-          connection.query(`
-          UPDATE user 
-          SET token_bet="${total_betted}", token_amount="${req}" 
-          WHERE user_id = "${data.user_id}"`
-        )}), 30) // 30ms 지연
-    }    
-    // 트랜잭션 컨펌 속도보다 저장속도가 빨라, 토큰수량 업데이트 전 값이 DB로 들어가버림. 
-    // 그래서 setTimeout 함수로 가나슈 컨펌속도 평균인 10ms를 고려해 조금 늦은시점에 업데이트 되도록 변경
+      if(results[0].token_amount >= data.token_bet){
 
-    else{ // 배팅 불가할때 (가스비 부족, 토큰 부족 등 이유)
-      res.status(500).send("Can't Bet")
+        SendTokenU2S(results[0].private_key, process.env.SERVER_ADDRESS, data.token_bet)
+        setTimeout(() => getTOKENBalanceOf(results[0].address)
+        .then(
+          req => {
+            const total_betted = parseInt(results[0].token_bet) + parseInt(data.token_bet);
+            connection.query(`
+            UPDATE user 
+            SET token_bet="${total_betted}", token_amount="${req}" 
+            WHERE user_id = "${data.user_id}"`
+            
+          )}), 30) // 30ms 지연 // 컨펌 속도 맞추기 위함
+        res.status(200).send(true)
+      }    
+
+      else{ // 배팅 불가할때 (가스비 부족, 토큰 부족 등 이유)
+        res.status(400).send("가스 또는 토큰이 부족합니다.")
+      }
     }
+    else{
+      res.status(500).send("투표한 팀에만 배팅할 수 있습니다.")
+    } 
   })
 }
 

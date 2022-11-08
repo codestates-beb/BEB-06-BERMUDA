@@ -28,7 +28,7 @@ var connection = mysql.createConnection({
       });
 
     connection.query(
-        `SELECT img_id FROM nftlist WHERE user_id=?`,
+        `SELECT img_id FROM nft WHERE user_id=?`,
         [req.params.user_id],
         (err, results, fields) => {
           if (err) throw err;

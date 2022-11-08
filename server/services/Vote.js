@@ -40,7 +40,7 @@ const Vote = async (data, res) => {
     SendToken(results[0].address, 20)
     setTimeout(() => getTOKENBalanceOf(results[0].address)
     .then(
-      req => connection.query(`UPDATE user SET isVoted=1, token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
+      req => connection.query(`UPDATE user SET isVoted="${data.choice}", token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
       if (error) throw error;
       console.log(`20 토큰 전송완료. 현재 보유 토큰 수는 ${req} 입니다.`)
       res.status(200).send(true);
