@@ -63,6 +63,17 @@ app.post("/user/win", function (req, res){  // 로그인 된 아이디를 받아
   WinBet(data);
 }) // 배팅이 끝난 뒤 최신 DB 전송
 
+
+app.get("/comment/data" , function (req,res) {
+    getComment(res);
+});
+
+app.post("/comment/save" , function (req,res) {
+  const userData = req.body.userData;
+  saveComment(userData,res);
+})
+
+
 app.post('/nft/create', SaveNftData);
 app.get('/nft/:user_id', GetNftData);
 
