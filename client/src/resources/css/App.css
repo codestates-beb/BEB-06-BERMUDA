@@ -1288,3 +1288,54 @@ img.nft_img {
   overflow: auto;
   border-bottom: 1px solid #b3adad;
 }
+
+.comment_input {
+  width: 270px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 20px;
+  vertical-align: top;
+  margin-top: 3px;
+  border: 1px solid #c4c3c3;
+  border-width: 0 0 1px;
+  padding: 0 5px;
+}
+
+.comment_button {
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 20px;
+  width: 70px;
+  height: 35px;
+  line-height: 35px;
+  background-color: #7fc1fc;
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  vertical-align: bottom;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.comment_input:focus {
+  border: 1px solid #00cb76;
+}
+
+.comment_input:focus-visible {
+  border: 1px solid #00cb76;
+  outline: 0px;
+}
+
+.comment_img {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: #1ed874;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.comment_one {
+  margin: 2px 0 2px 5px
+}

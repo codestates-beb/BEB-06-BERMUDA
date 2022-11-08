@@ -20,7 +20,7 @@ const Login = (data ,res) => {
 		if (error) throw error;
 	});
 
-	connection.query(` SELECT A.* , B.token_id , B.img_url FROM user as A LEFT JOIN nft as B  ON A.id = B.user_id where A.user_id = "${data.user_id}" `, function(error, results, fields) {
+	connection.query(` SELECT A.* , B.nft_name , B.img_url FROM user as A LEFT JOIN nft as B  ON A.id = B.user_id where A.user_id = "${data.user_id}" `, function(error, results, fields) {
 		if (error) throw error;
 
 		if (results.length === 0 || results[0].password !== data.password){
