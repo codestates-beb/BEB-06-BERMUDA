@@ -66,13 +66,15 @@ const mint = async (results) => {
       // Set provider + new contract (abi, address)
       const userAddress = req.body.wallet_id;
       const tokenURI = req.body.token_id;
-      const allowance = 50;
+      const allowance = 70;
+      const mintPrice = 10;
       const userPK = results.private_key
+      console.log(tokenURI);
 
       
         try {
           //console.log(userPK);
-          const tokenContract = new web3.eth.Contract(erc20Abi, erc20Addr, {from: userAddress});
+          const tokenContract = new web3.eth.Contract(erc20Abi, erc20Addr, {from: userAddress, gasPrice: '2000000'});
           //console.log(tokenContract);
           const approveAllowance = tokenContract.methods.approve(erc721Addr, allowance).encodeABI();
           //console.log(approveAllowance);
@@ -83,10 +85,10 @@ const mint = async (results) => {
           };
           //console.log(tx);
           const signedTxApprove = await web3.eth.accounts.signTransaction(tx, userPK)
-          .then((signedTxApprove) => web3.eth.sendSignedTransaction(signedTxApprove.rawTransaction));
+          .then((signedTxApprove) =>  web3.eth.sendSignedTransaction(signedTxApprove.rawTransaction));
           console.log('HelloWorldaaaa');
-          const nftContract = new web3.eth.Contract(erc721Abi, erc721Addr, {from: serverAddr});
-          const mintNft = nftContract.methods.mintNFT(userAddress, tokenURI).encodeABI();
+          const nftContract = new web3.eth.Contract(erc721Abi, erc721Addr, {from: serverAddr, gasPrice: '2000000'});
+          const mintNft = nftContract.methods.mintNFT(userAddress, tokenURI, mintPrice).encodeABI();
           const tx721 = {
             "to": erc721Addr,
             "gas": 2000000,
@@ -95,17 +97,13 @@ const mint = async (results) => {
           console.log('HelloWorldaa');
           console.log("4");
           const signedTxMint = await web3.eth.accounts.signTransaction(tx721, serverKey)
-          web3.eth.sendSignedTransaction(signedTxMint.rawTransaction)
-          .then((signedTxMint) => web3.eth.sendSignedTransaction(signedTxMint.rawTransaction))
-          .then(req => {
-            return res.status(200).send("민트 성공");
-          })
+          .then((signedTxMint) => web3.eth.sendSignedTransaction(signedTxMint.rawTransaction));
   
             console.log(signedTxMint);
             console.log('HelloWorld');
           return signedTxMint;
         } catch (err) {
-          console.log('error', err);
+          console.log(err);
         }
         res.send("민트 성공!");
   }
