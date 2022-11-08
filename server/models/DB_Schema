@@ -17,10 +17,9 @@ CREATE TABLE `nft` (
 );
 
 CREATE TABLE `vote` (
+  `tournament` varchar(255),
   `num_one` int,
   `num_two` int
 );
-
-
 
 ALTER TABLE `nft` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);

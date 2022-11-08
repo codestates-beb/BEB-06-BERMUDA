@@ -22,36 +22,15 @@ var connection = mysql.createConnection({
 connection.connect();
 
 const GetSignUpData = (data, res) => {
-  
   console.log(data)
-
-  // CREATE DATABASE NAME : incentive_community 
-  // CAN UPDATE DATABASE NAME by using DB SCHEME AGREEMENT 
-
-  connection.query("CREATE DATABASE if not exists webtoon", (error, results, fields) => {
-    if (error) throw error;
-    // console.log(results);
-  });
-  connection.query("USE webtoon", function (error, results, fields) {
-    if (error) throw error;
-    // console.log(results)
-  });
-
-  connection.query(
-    "CREATE TABLE if not exists nft(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), token_id varchar(255),img_url varchar(255), wallet_id varchar(255))",
-    function (error, results, fields) {
-      if (error) throw error;
-      // console.log(results);
-  });
-  connection.query(
-    "CREATE TABLE if not exists user(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id varchar(255), password varchar(255), nickname varchar(255), address varchar(255), private_key varchar(255), eth_amount int, token_amount int, token_bet int, isVoted int, created_at timestamp) ",
-    function (error, results, fields) {
-      if (error) throw error;
-  });
   GetSignIdData(data,res);
 };
 
 const GetSignIdData = async (data,res) => {
+  connection.query("USE webtoon", function (error, results, fields) {
+    if (error) throw error;
+    // console.log(results)
+  });
   // ###### 이미 DB상에 USER_ID 또는 NICKNAME이 존재할때 에러 던지기 ########
   connection.query(`SELECT * FROM user WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
     if (error) throw error;
@@ -90,8 +69,6 @@ const GetSignUpDataEnd = (data,res) => {
   res.status(200).send('complete');
   connection.end();
  }
- 
-
 
 
 export default GetSignUpData  ;

@@ -8,6 +8,8 @@ import Bet from "../services/Bet.js";
 import WinBet from "../services/WinBet.js";
 import SaveNftData from "../services/SaveNftData.js";
 import GetNftData from "../services/GetNftData.js"
+import CreateDatabase from "../services/CreateDatabase.js";
+
 // import dotenv from "dotenv";
 
 const app = express();
@@ -26,6 +28,8 @@ async function getAccounts() {
       return e;
   }
 }
+
+CreateDatabase();
 
 app.use(express.json());
 // app.listen(4000);
