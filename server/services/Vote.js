@@ -36,7 +36,7 @@ const Vote = async (data, res) => {
 		if (error) throw error;
 
     // @@@@@@ 무한투표로 테스트하기위해 53~55번라인 포함 주석처리 @@@@@@@
-		// if (results[0].isVoted === 0){
+		if (results[0].isVoted === 0){
 
       SendToken(results[0].address, 20)
       setTimeout(() => getTOKENBalanceOf(results[0].address)
@@ -49,9 +49,9 @@ const Vote = async (data, res) => {
       // 트랜잭션 컨펌 속도보다 저장속도가 빨라, 토큰수량 업데이트 전 값이 DB로 들어가버림. 
       // 그래서 setTimeout 함수로 가나슈 컨펌속도 평균인 10ms를 고려해 조금 늦은시점에 업데이트 되도록 변경
 
-		// }else{
-    //   res.status(500).send(false);
-    // }
+		}else{
+      res.status(500).send(false);
+    }
   })
 
   connection.query(`SELECT * FROM vote WHERE tournament = "final"`, function(error, results, fields) { 

@@ -55,14 +55,14 @@ const WinBet = async (data, res) => {
 
       if(parseInt(winner)===results[0].isVoted){
 
-        const doubleToken = parseInt(results[0].token_bet)*2
+        const doubleToken = parseInt(results[0].token_bet)*1.8
     
         SendToken(results[0].address, doubleToken)
         setTimeout(() => getTOKENBalanceOf(results[0].address)
         .then(
           req => connection.query(`UPDATE user SET token_bet=0, token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
           if (error) throw error;
-          res.status(200).send(`배팅에서 이기셨습니다. \n배팅하신 토큰의 두배인 ${doubleToken} 토큰 전송완료.`)
+          res.status(200).send(`배팅에서 이기셨습니다. \n배팅하신 토큰의 1.8배인 ${doubleToken} 토큰 전송완료.`)
         })), 30)
 
         // 트랜잭션 컨펌 속도보다 저장속도가 빨라, 토큰수량 업데이트 전 값이 DB로 들어가버림. 
