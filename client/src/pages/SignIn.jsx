@@ -44,9 +44,11 @@ function SiginIn(props) {
 
           for ( let i = 0; i < data.length; i++ ) {
             let resultdata = {};
-            resultdata["nft_id"] = data[i].nft_id;
-            resultdata["img_url"] = data[i].img_url;
-            nft.push(resultdata);
+            if ( data[i].nft_id != null &&  data[i].img_url != null ) {
+              resultdata["nft_id"] = data[i].nft_id;
+              resultdata["img_url"] = data[i].img_url;
+              nft.push(resultdata);
+            }
           }
 
           let result = {};
