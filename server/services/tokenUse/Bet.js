@@ -1,8 +1,8 @@
 import mysql from 'mysql';
 import dotenv from "dotenv";
 import Web3 from "web3"
-import Abi from './Abi.js';
-import SendTokenU2S from './SendTokenU2S.js';
+import Abi from '../../abi/Abi.js';
+import SendTokenU2S from '../SendTokenU2S.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const contractHx = '0xE02ECe608A839Bef998CeE567059a83CE2D4b566'; // 여기도 undefined로 뜸 // 그래서 직접 넣기로 결정

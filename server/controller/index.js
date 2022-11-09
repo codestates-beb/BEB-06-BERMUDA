@@ -1,16 +1,16 @@
 import express from "express";
 import cors from "cors";
-import GetSignUpData from "../services/GetSignUpData.js";
+import GetSignUpData from "../models/GetSignUpData.js";
 import Login from "../services/Login.js";
 import Web3 from "web3"
-import Vote from "../services/Vote.js";
-import Bet from "../services/Bet.js";
-import WinBet from "../services/WinBet.js";
-import Faucet from "../services/Faucet.js";
-import GetNftData from "../services/GetNftData.js"
-import MintingNft from "../services/Minting.js";
-import CreateDatabase from "../services/CreateDatabase.js";
-import { getComment , saveComment } from "../services/Comment.js"
+import Vote from "../services/tokenUse/Vote.js";
+import Bet from "../services/tokenUse/Bet.js";
+import WinBet from "../services/tokenUse/WinBet.js";
+import Faucet from "../services/tokenUse/Faucet.js";
+import GetNftData from "../models/GetNftData.js"
+import MintingNft from "../services/tokenUse/Minting.js";
+import CreateDatabase from "../models/CreateDatabase.js";
+import { getComment , saveComment } from "../services/tokenUse/Comment.js"
 // import dotenv from "dotenv";
 
 const app = express();

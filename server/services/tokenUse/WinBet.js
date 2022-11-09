@@ -1,8 +1,8 @@
 import mysql from 'mysql';
 import dotenv from "dotenv";
 import Web3 from "web3"
-import Abi from './Abi.js';
-import SendToken from './SendToken.js';
+import Abi from '../../abi/Abi.js';
+import SendToken from '../SendToken.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const contractHx = process.env.ERC20_CONTRACT_HX; // 고정
@@ -58,9 +58,9 @@ const WinBet = async (data, res) => {
 
 
         const doubleToken = parseInt(results[0].token_bet)*1.8
-        console.log("@@@@@@@@@@@@@@@@@")
+
         SendToken(results[0].address, doubleToken)
-        console.log("@@@@@@@@@@@@@@@@@")
+
         setTimeout(() => getTOKENBalanceOf(results[0].address)
         .then(
           req => connection.query(`UPDATE user SET token_bet=0, token_amount="${req}" WHERE user_id = "${data.user_id}"`, function(error, results, fields) {
