@@ -22,6 +22,9 @@
 
 ## FILE DESCRIPTION - SERVER
 
+### server/controller/index.js
+각종 라우터 기능 포함
+
 ### server/services/Abi, Abi721
 ERC20과 ERC721의 스마트컨트랙트를 ABI 형식으로 치환해 객체형식으로 저장
 
@@ -69,40 +72,40 @@ Nft 메타데이터 DB에 저장. user 의 지갑으로 erc20 토큰 지불 후 
 ### /client/src/App.jsx
 각 페이지 별로 라우팅
 
-### /client/src/components/Hedaer.jsx
+### ../components/Hedaer.jsx
 페이지 상단 고정되어있는 상단바
 
-### /client/src/components/ImgSlider.jsx
+### ./.../ImgSlider.jsx
 메인페이지 중단에 있는 이미지 슬라이드
 
-### /client/src/components/Signup.jsx
+### ./.../Signup.jsx
 회원가입 팝업창
 
-### /client/src/Pages/League.jsx
+### ./Pages/League.jsx
 웹툰끼리 투표해서 순위를 가리는 페이지 
 
-### /client/src/Pages/MainPage.jsx
+### ./.../MainPage.jsx
 웹페이지 접속시 나타나는 첫 페이지 
 
-### /client/src/Pages/Mint.jsx
+### ./.../Mint.jsx
 팬아트를 민팅하는 페이지 
 
-### /client/src/Pages/MyPage.jsx
+### ./.../MyPage.jsx
 보유하고 있는 토큰 nft를 확인 할 수 있는 마이페이지
 
-### /client/src/Pages/SignIn.jsx
+### ./.../SignIn.jsx
 로그인 페이지 , 회원가입 가능 
 
-### /client/src/Pages/league_sub/RoundOf2jsx
+### ./.../league_sub/RoundOf2jsx
 웹툰 대항전 결승
 
-### /client/src/reducers/index.js
+### ./reducers/index.js
 리덕스 저장소
 
-### /client/src/reducers/reducer.js
+### ./.../reducer.js
 리덕스 제어 
 
-### /client/src/resources/App.css
+### ./resources/App.css
 모든 css 제어 
 
 
