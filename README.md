@@ -29,7 +29,7 @@
 Nft 메타데이터 DB에 저장. user 의 지갑으로 erc20 토큰 지불 후 민팅
 
 ### /server/services/faucet
-Ganache 계정[1]에서 사용자에게 전송. BE2FE 연결
+연결된 서버계정에서 사용자에게 전송. BE2FE 연결
 
 ### /server/services/getNftData
 DB에 저장된 사용자의 NFT 데이터 BE2FE 연결
