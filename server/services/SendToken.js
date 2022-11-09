@@ -1,5 +1,5 @@
 import Web3 from "web3"
-import Abi from './Abi.js';
+import Abi from '../abi/Abi.js';
 import dotenv from "dotenv";
 dotenv.config();
 

@@ -1,8 +1,8 @@
 import mysql from 'mysql';
 import dotenv from "dotenv";
-import SendToken from './SendToken.js';
+import SendToken from '../SendToken.js';
 import Web3 from "web3"
-import Abi from './Abi.js';
+import Abi from '../../abi/Abi.js';
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const contractHx = process.env.ERC20_CONTRACT_HX; // 고정

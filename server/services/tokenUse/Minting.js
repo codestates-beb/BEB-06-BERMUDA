@@ -1,8 +1,8 @@
 import mysql from 'mysql';
 import dotenv from "dotenv";
 import Web3 from 'web3';
-import erc20Abi from "./Abi.js";
-import erc721Abi from "./Abi721.js";
+import erc20Abi from "../../abi/Abi.js";
+import erc721Abi from "../../abi/Abi721.js";
 
 dotenv.config();
 
