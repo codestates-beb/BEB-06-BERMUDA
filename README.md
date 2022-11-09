@@ -20,7 +20,7 @@
 
 ## HOW TO USE
 
-## FILE DESCRIPTION
+## FILE DESCRIPTION - SERVER
 
 ### /server/services/bet
 결승전에서 이길거라고 예상하는 팀에게 배팅할 수 있게 하는 기능. input 박스에 값을 넣고 배팅버튼을 누르면 개인 지갑에 있던 토큰을 서버로 전송
@@ -42,6 +42,8 @@ DB에 저장된 사용자의 NFT 데이터 BE2FE 연결
 
 ### /server/services/Login
 로그인시 사용 nft 테이블과 조인해서 nft데이터를 함께 리턴 
+
+## FILE DESCRIPTION - CLIENT
 
 ### /client/src/App.jsx
 각 페이지 별로 라우팅
@@ -69,18 +71,6 @@ DB에 저장된 사용자의 NFT 데이터 BE2FE 연결
 
 ### /client/src/Pages/SignIn.jsx
 로그인 페이지 , 회원가입 가능 
-
-### /client/src/Pages/league_sub/RoundOf16bjsx
-웹툰 대항전 16강B조 
-
-### /client/src/Pages/league_sub/RoundOf16jsx
-웹툰 대항전 16강A조 
-
-### /client/src/Pages/league_sub/RoundOf8jsx
-웹툰 대항전 8강 
-
-### /client/src/Pages/league_sub/RoundOf4jsx
-웹툰 대항전 4강 
 
 ### /client/src/Pages/league_sub/RoundOf2jsx
 웹툰 대항전 결승
