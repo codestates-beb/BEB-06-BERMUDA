@@ -20,11 +20,17 @@
 
 ## HOW TO USE
 
-1. mysql 실행
-2. 가나슈 실행
-3. client 실행
-4. server 실행
-
+### 1. .env.example 형식을 토대로 .env 파일을 생성
+### 2. mysql 실행
+$ mysql -u root -p </br>
+### 3. 가나슈 실행 (default가 7545인 가나슈 gui 사용 추천)
+**cli 사용시** </br>
+$ npm install -g ganache-cli </br>
+$ ganache-cli -d --port 7545 </br>
+### 4. client 실행
+/client $ npm start 
+### 5. server 실행
+/server $ npm start 
 ## FILE DESCRIPTION - SERVER
 
 ### server / abi / Abi, Abi721
