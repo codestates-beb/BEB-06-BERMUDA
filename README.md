@@ -20,6 +20,11 @@
 
 ## HOW TO USE
 
+1. mysql 실행
+2. 가나슈 실행
+3. client 실행
+4. server 실행
+
 ## FILE DESCRIPTION - SERVER
 
 ### server / abi / Abi, Abi721
