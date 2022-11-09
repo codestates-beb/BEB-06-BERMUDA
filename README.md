@@ -22,26 +22,47 @@
 
 ## FILE DESCRIPTION - SERVER
 
-### /server/services/bet
-결승전에서 이길거라고 예상하는 팀에게 배팅할 수 있게 하는 기능. input 박스에 값을 넣고 배팅버튼을 누르면 개인 지갑에 있던 토큰을 서버로 전송
+### server/services/Abi, Abi721
+ERC20과 ERC721의 스마트컨트랙트를 ABI 형식으로 치환해 객체형식으로 저장
 
-### /server/services/minting
-Nft 메타데이터 DB에 저장. user 의 지갑으로 erc20 토큰 지불 후 민팅
+### ./Bet
+이길거라고 예상하는 팀에게 배팅할 수 있게 하는 기능. input 박스에 값을 넣고 배팅버튼을 누르면 개인 지갑에 있던 토큰을 서버로 전송
 
-### /server/services/faucet
+### ./Comment 
+결승전을 응원하는 사람들끼리 실시간 채팅을 하는 기능. 채팅을 치면 데이터베이스에 저장이 되고 데이터베이스에 있는 내용을 불러옴
+
+### ./CreateDatabase
+DB와 테이블을 생성할 수 있는 파일. 서버쪽을 노드로 돌리면 자동으로 실행
+
+### ./CreateWallet
+web3를 이용해서 지갑생성
+
+### ./faucet
 연결된 서버계정에서 사용자에게 전송. BE2FE 연결
 
-### /server/services/getNftData
+### ./getNftData
 DB에 저장된 사용자의 NFT 데이터 BE2FE 연결
 
-### /server/services/Comment 
-결승전을 응원하는 사람들끼리 실시간 채팅을 하는 기능.  채팅을 치면 데이터베이스에 저장이 되고 데이터베이스에 있는 내용을 불러와줌
+### ./GetSignUpData 
+회원가입 할때 사용, 회원가입시 각종 에러 리턴
 
-### /server/services/GetSignUpData 
-회원가입 할때 사용  , 회원가입시 각종 에러시 해당 리턴기능 포함 
-
-### /server/services/Login
+### ./Login
 로그인시 사용 nft 테이블과 조인해서 nft데이터를 함께 리턴 
+
+### ./minting
+Nft 메타데이터 DB에 저장. user 의 지갑으로 erc20 토큰 지불 후 민팅
+
+### ./sendToken
+서버계정에서 타 지갑으로 ERC20 토큰 전송
+
+### ./sendTokenU2S
+유저지갑에서 서버지갑으로 ERC20 토큰 전송
+
+### ./vote
+원하는 팀에 투표 및 투표집계를 위해 DB에 저장
+
+### ./WinBet
+배팅 승리시 1.8배의 토큰을 지급, 무승부면 배팅 금액 그대로 반환, 패배시 토큰 소각 
 
 ## FILE DESCRIPTION - CLIENT
 
