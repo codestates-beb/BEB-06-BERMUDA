@@ -1,6 +1,6 @@
 # BEB-06-SECOND-06
 
-## TECH STACK
+## USE STACK
 <div align="center">
 
   <a href="CSS3">![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)</a>
